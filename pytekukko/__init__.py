@@ -108,7 +108,7 @@ class Pytekukko:
         params = {"customerNumber": self.customer_number, "pos": pos}
 
         async with self.session.get(
-            url, params=params, raise_for_status=True
+            url, params=params, raise_for_status=_is_retry
         ) as response:
             if not _is_retry and await self._retry_after_login(response):
                 return await self.get_collection_schedule(pos, _is_retry=True)
@@ -153,7 +153,11 @@ class Pytekukko:
             await _flush_response(response)
 
     async def _retry_after_login(self, response: ClientResponse) -> bool:
-        if response.history and response.url.path.endswith("/login.do"):
+        if (  # general logged out cases
+            response.history and response.url.path.endswith("/login.do")
+        ) or (  # get_collection_schedule does not redirect but gives a 500
+            response.status == 500 and "get_collection_schedule" in response.url.path
+        ):
             await _flush_response(response)
             _ = await self.login()
             return True
