@@ -1,5 +1,6 @@
 """Pytekukko tests."""
 
+import datetime
 import os
 from typing import Any, Dict, TypeVar
 from urllib.parse import parse_qs, quote_plus, urlparse, urlunparse
@@ -14,8 +15,12 @@ T = TypeVar("T", bound=Dict[str, Any])  # pylint: disable=invalid-name
 
 FAKE_CUSTOMER_NUMBER = "00-0000000-00"
 FAKE_PASSWORD = "secret"  # noqa: S105
+FAKE_POS = "1234"
 
-QUERY_PARAMETER_FILTERS = []
+QUERY_PARAMETER_FILTERS = [
+    ("customerNumber", FAKE_CUSTOMER_NUMBER),
+    ("pos", FAKE_POS),
+]
 
 
 def before_record_response(response: T) -> T:
@@ -91,3 +96,15 @@ async def test_logout(client: Pytekukko) -> None:
     async with client.session:
         await client.logout()
     # No exception counts as success here
+
+
+@pytest.mark.asyncio
+@pytest.mark.vcr
+async def test_get_collection_schedule(client: Pytekukko) -> None:
+    """Test getting collection schedule."""
+    async with client.session:
+        dates = await client.get_collection_schedule(
+            what=int(os.environ.get("PYTEKUKKO_TEST_POS", FAKE_POS))
+        )
+    assert dates
+    assert all(isinstance(date, datetime.date) for date in dates)
