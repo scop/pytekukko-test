@@ -3,6 +3,7 @@
 import os
 from typing import Any, Dict, TypeVar
 
+import dotenv
 import pytest
 from aiohttp import ClientSession
 
@@ -18,6 +19,12 @@ def remove_set_cookie(response: T) -> T:
     """Remove ``Set-Cookie`` header from response."""
     response["headers"].pop("Set-Cookie", None)
     return response
+
+
+@pytest.fixture(scope="module", autouse=True)
+def load_dotenv() -> None:
+    """Load environment."""
+    dotenv.load_dotenv()
 
 
 @pytest.fixture(scope="module")

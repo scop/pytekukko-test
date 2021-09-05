@@ -3,3 +3,5 @@ pytest-asyncio
 pytest-vcr
 # See note test_pytekukko.vcr_config
 vcrpy ==4.1.1
+
+python-dotenv ~=0.10
