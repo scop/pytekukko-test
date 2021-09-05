@@ -76,3 +76,8 @@ repos:
     rev: v1.1.7
     hooks:
       - id: typos
+
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.15.1
+    hooks:
+      - id: gitlint
