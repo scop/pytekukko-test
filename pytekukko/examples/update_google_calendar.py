@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 
-"""Update next collection date events in Google Calendar."""
+"""
+Update Google Calendar with events for next collections.
+
+To get the required service account file, enable the Google Calendar API
+in the Google Cloud console, create service account credentials with
+access to it, and create keys of type JSON.
+
+Calendar id is typically the target Google Calendar account e-mail
+address.
+"""
 
 import asyncio
 import datetime
