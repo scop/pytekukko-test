@@ -1,0 +1,8 @@
+*.egg-info/
+.python-version
+/*.cookies
+/.env
+/build/
+/dist/
+/service_account.json
+__pycache__/
