@@ -2,6 +2,7 @@
 
 import os
 from typing import Any, Dict, TypeVar
+from urllib.parse import parse_qs, quote_plus, urlparse, urlunparse
 
 import dotenv
 import pytest
@@ -14,10 +15,29 @@ T = TypeVar("T", bound=Dict[str, Any])  # pylint: disable=invalid-name
 FAKE_CUSTOMER_NUMBER = "00-0000000-00"
 FAKE_PASSWORD = "secret"  # noqa: S105
 
+QUERY_PARAMETER_FILTERS = []
 
-def remove_set_cookie(response: T) -> T:
-    """Remove ``Set-Cookie`` header from response."""
+
+def before_record_response(response: T) -> T:
+    """Scrub unwanted data before recording response."""
+
     response["headers"].pop("Set-Cookie", None)
+
+    # As of vcrpy 4.1.1, query parameters filtered with filter_query_parameters
+    # do not end up filtered in response["url"], so address them here.
+    url_parts = urlparse(response["url"])
+    new_query_parts = []
+    query_params = parse_qs(url_parts.query)
+    for key, values in query_params.items():
+        for filter_key, filter_value in QUERY_PARAMETER_FILTERS:
+            if key == filter_key:
+                values = [filter_value]
+        for value in values:
+            new_query_parts.append(f"{quote_plus(key)}={quote_plus(value)}")
+    new_url_parts = list(url_parts)
+    new_url_parts[4] = "&".join(new_query_parts)
+    response["url"] = urlunparse(new_url_parts)
+
     return response
 
 
@@ -31,8 +51,9 @@ def load_dotenv() -> None:
 def vcr_config() -> Dict[str, Any]:
     """Get vcrpy configuration."""
     return {
-        "before_record_response": remove_set_cookie,
+        "before_record_response": before_record_response,
         "filter_headers": ["Cookie"],
+        "filter_query_parameters": QUERY_PARAMETER_FILTERS,
         # NOTE: this should be uncommented when upgrading vcrpy to a fixed > 4.1.1:
         #   https://github.com/kevin1024/vcrpy/issues/398
         #   https://github.com/kevin1024/vcrpy/pull/582
