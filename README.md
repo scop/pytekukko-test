@@ -13,7 +13,7 @@ Usage in a nutshell:
 * construct a `Pytekukko` client with it and your credentials,
 * invoke methods on the client.
 
-The API uses cookie based sessions, use a persistent aiohttp
+The Omakukko API uses cookie based sessions, use a persistent aiohttp
 `CookieJar` to maintain client session across interpreter restarts.
 
 High level client methods handle logging in when the need to do so is
