@@ -66,8 +66,3 @@ class InvoiceHeader:
     """
 
     raw_data: Dict[str, Any]
-
-    @property
-    def customer_number(self) -> str:
-        """Get customer number."""
-        return cast(str, self.raw_data["asiakasnro"])
