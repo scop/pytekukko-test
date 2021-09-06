@@ -18,6 +18,7 @@ FAKE_PASSWORD = "secret"  # noqa: S105
 FAKE_POS = "1234"
 
 QUERY_PARAMETER_FILTERS = [
+    ("customerId", FAKE_CUSTOMER_NUMBER),
     ("customerNumber", FAKE_CUSTOMER_NUMBER),
     ("pos", FAKE_POS),
 ]
@@ -42,6 +43,9 @@ def before_record_response(response: T) -> T:
     new_url_parts = list(url_parts)
     new_url_parts[4] = "&".join(new_query_parts)
     response["url"] = urlunparse(new_url_parts)
+
+    if response["url"].endswith("/login.do"):
+        response["body"]["string"] = b"redacted"  # unused, bloats cassettes
 
     return response
 
@@ -108,3 +112,16 @@ async def test_get_collection_schedule(client: Pytekukko) -> None:
         )
     assert dates
     assert all(isinstance(date, datetime.date) for date in dates)
+
+
+@pytest.mark.asyncio
+@pytest.mark.vcr
+async def test_get_invoice_headers(client: Pytekukko) -> None:
+    """Test getting invoice headers."""
+    async with client.session:
+        invoice_headers = await client.get_invoice_headers()
+    assert invoice_headers
+    assert all(invoice_header.raw_data for invoice_header in invoice_headers)
+    assert all(invoice_header.name for invoice_header in invoice_headers)
+    assert all(invoice_header.due_date for invoice_header in invoice_headers)
+    assert all(invoice_header.total for invoice_header in invoice_headers)
