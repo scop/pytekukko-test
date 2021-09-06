@@ -14,12 +14,13 @@ ones.
 
 Usage in a nutshell:
 
-* construct an aiohttp `ClientSession`,
+* construct an aiohttp [`ClientSession`](https://docs.aiohttp.org/en/stable/client_reference.html#client-session),
 * construct a `Pytekukko` client with it and your credentials,
 * invoke methods on the client.
 
 The Omakukko API uses cookie based sessions, use a persistent aiohttp
-`CookieJar` to maintain client session across interpreter restarts.
+[`CookieJar`](https://docs.aiohttp.org/en/stable/client_reference.html#cookiejar)
+to maintain client session across interpreter restarts.
 
 High level client methods handle logging in when the need to do so is
 detected. If the detection is successful, there is no need to
