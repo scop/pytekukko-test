@@ -66,3 +66,18 @@ class InvoiceHeader:
     """
 
     raw_data: Dict[str, Any]
+
+    @property
+    def name(self) -> str:
+        """Get customer number."""
+        return cast(str, self.raw_data["name"])
+
+    @property
+    def due_date(self) -> date:
+        """Get due date."""
+        return cast(date, self.raw_data["dueDate"])
+
+    @property
+    def total(self) -> float:
+        """Get total amount."""
+        return cast(float, self.raw_data["total"])
