@@ -7,6 +7,11 @@
 Simple asyncio client for the [Jätekukko](https://www.jatekukko.fi)
 [Omakukko](https://tilasto.jatekukko.fi/indexservice2.jsp) API.
 
+The API of this package is modeled closely after the Omakukko API. We
+only implement read operations (well apart from, strictly speaking,
+login/logout), and there are no plans to add support for any write
+ones.
+
 Usage in a nutshell:
 
 * construct an aiohttp `ClientSession`,
