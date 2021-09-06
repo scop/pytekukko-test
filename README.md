@@ -26,6 +26,7 @@ package. Executables and dependencies for these are installed when the
 package is installed with the `examples` extra, invoke them with
 `--help` for usage and setup information:
 
+* `pytekukko-invoice-headers`: output basic info on invoices in JSON
 * `pytekukko-next-collections`: output next collection dates in JSON
 * `pytekukko-update-google-calendar`: update Google Calendar with
   events for next collections
