@@ -29,3 +29,8 @@ package is installed with the `examples` extra, invoke them with
 * `pytekukko-next-collections`: output next collection dates
 * `pytekukko-update-google-calendar`: update Google Calendar with
   events for next collections
+
+## Disclaimer
+
+This package is not supported or endorsed by Jätekukko. Do not bother
+them with issues related to it.
