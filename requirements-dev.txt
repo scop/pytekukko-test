@@ -15,7 +15,7 @@ pydocstyle ==6.1.1
 
 mypy ==0.910
 
-pre-commit >=2.9.0
+pre-commit ~=2.9
 
 pylint ==2.9.3
 pylint-strict-informational ==0.1
@@ -24,4 +24,4 @@ python-lsp-server
 
 pytype ==2021.8.24
 
-tox >=3.14.0
+tox ~=3.14
