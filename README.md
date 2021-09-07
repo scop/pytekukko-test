@@ -7,10 +7,10 @@
 Simple asyncio client for the [Jätekukko](https://www.jatekukko.fi)
 [Omakukko](https://tilasto.jatekukko.fi/indexservice2.jsp) API.
 
-The API of this package is modeled closely after the Omakukko API. We
-only implement read operations (well apart from, strictly speaking,
-login/logout), and there are no plans to add support for any write
-ones.
+The API of this package is modeled closely after the Omakukko
+API. Only read operations are implemented (well apart from, strictly
+speaking, login/logout), and there are no plans to add support for any
+write ones.
 
 Usage in a nutshell:
 
@@ -39,5 +39,5 @@ package is installed with the `examples` extra, invoke them with
 
 ## Disclaimer
 
-This package is not supported or endorsed by Jätekukko. Do not bother
-them with issues related to it.
+This package is not supported by or endorsed by Jätekukko. Do not
+bother them with issues related to it.
