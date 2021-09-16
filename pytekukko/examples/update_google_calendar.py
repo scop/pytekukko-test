@@ -95,7 +95,8 @@ def update_google_calendar(  # pylint: disable=too-many-locals
 
     for pos, pos_event_data in data.items():
         date = pos_event_data.date.isoformat()
-        description = ("{} [pos={}]".format(pos_event_data.name or "", pos)).strip()
+        name = pos_event_data.name or ""
+        description = f"{name} [pos={pos}]".strip()
         event_data = {
             "summary": "Jätekukko collection",
             "description": description,
