@@ -7,7 +7,7 @@ from setuptools import setup  # type: ignore[import]
 
 def get_version() -> str:
     """Extract version number."""
-    fname = "src/pytekukko/version.py"
+    fname = "src/pytekukko/__init__.py"
     with open(fname, encoding="utf-8") as file_:
         for line in file_:
             if line.startswith("__version__"):
