@@ -102,6 +102,7 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
+          - "3.11.0-alpha - 3.11"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -117,7 +118,8 @@ jobs:
             ${{hashFiles('requirements-test.txt', 'setup.cfg')}}
       - name: Install dependencies
         run: |
-          python3 -m pip install tox-gh-actions
+          python3 -m pip install tox-gh-actions \
+            "$(grep -F pytest-dev/py.git@ requirements-test.txt)"
       - name: Run tests
         run: |
           tox --skip-missing-interpreters false
