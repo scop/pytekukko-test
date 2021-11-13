@@ -143,12 +143,7 @@ def update_google_calendar(  # pylint: disable=too-many-locals
             )
         if method:
             event = method.execute()
-        LOGGER.log(
-            log_level,
-            "Event %s: %s",
-            action,
-            event.get("htmlLink"),  # pytype: disable=attribute-error
-        )
+        LOGGER.log(log_level, "Event %s: %s", action, event.get("htmlLink"))
 
 
 async def run_example() -> None:
