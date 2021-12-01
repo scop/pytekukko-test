@@ -140,6 +140,7 @@ class Pytekukko:
         headers = (("X-Requested-With", "XMLHttpRequest"),)
         params = {"target": "2"}
         data = {"j_username": self.customer_number, "j_password": self.password}
+
         async with self.session.post(
             url, headers=headers, params=params, data=data, raise_for_status=True
         ) as response:
@@ -149,6 +150,7 @@ class Pytekukko:
     async def logout(self) -> None:
         """Log out the current session."""
         url = urljoin(self.base_url, "j_acegi_logout_elcustrap")
+
         async with self.session.get(url, raise_for_status=True) as response:
             await _flush_response(response)
 
