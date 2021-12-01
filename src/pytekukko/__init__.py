@@ -1,10 +1,11 @@
 """Jätekukko Omakukko client."""
 
 from datetime import date, datetime
+from http import HTTPStatus
 from typing import Any, Dict, List, Union, cast
 from urllib.parse import urljoin
 
-from aiohttp import ClientResponse, ClientSession
+from aiohttp import ClientResponse, ClientResponseError, ClientSession
 
 from .models import CustomerData, InvoiceHeader, Service
 
@@ -62,42 +63,30 @@ class Pytekukko:
         self.password = password
         self.base_url = base_url
 
-    async def get_customer_data(
-        self, _is_retry: bool = False
-    ) -> Dict[str, List[CustomerData]]:
+    async def get_customer_data(self) -> Dict[str, List[CustomerData]]:
         """Get customer data."""
         url = urljoin(self.base_url, "secure/get_customer_datas.do")
 
-        async with self.session.get(url, raise_for_status=True) as response:
-            if not _is_retry and await self._retry_after_login(response):
-                return await self.get_customer_data(_is_retry=True)
-            response_data = await response.json()
+        response_data = await self._request_with_retry(method="GET", url=url)
 
         return {
             customer_number: [CustomerData(raw_data=a_data) for a_data in data]
             for customer_number, data in _unmarshal(response_data).items()
         }
 
-    async def get_services(
-        self,
-        _is_retry: bool = False,
-    ) -> List[Service]:
+    async def get_services(self) -> List[Service]:
         """Get services."""
         url = urljoin(self.base_url, "secure/get_services_by_customer_numbers.do")
         params = {"customerNumbers[]": self.customer_number}
 
-        async with self.session.get(
-            url, params=params, raise_for_status=True
-        ) as response:
-            if not _is_retry and await self._retry_after_login(response):
-                return await self.get_services(_is_retry=True)
-            response_data = await response.json()
+        response_data = await self._request_with_retry(
+            method="GET", url=url, params=params
+        )
+        assert isinstance(response_data, (list, tuple))
 
         return [Service(raw_data=_unmarshal(service)) for service in response_data]
 
-    async def get_collection_schedule(
-        self, what: Union[Service, int], _is_retry: bool = False
-    ) -> List[date]:
+    async def get_collection_schedule(self, what: Union[Service, int]) -> List[date]:
         """
         Get collection schedule for a service.
 
@@ -107,27 +96,23 @@ class Pytekukko:
         pos = what.pos if isinstance(what, Service) else what
         params = {"customerNumber": self.customer_number, "pos": pos}
 
-        async with self.session.get(
-            url, params=params, raise_for_status=_is_retry
-        ) as response:
-            if not _is_retry and await self._retry_after_login(response):
-                return await self.get_collection_schedule(pos, _is_retry=True)
-            response_data = await response.json()
+        response_data = await self._request_with_retry(
+            method="GET", url=url, params=params, raise_for_first_status=False
+        )
 
         return cast(List[date], _unmarshal(response_data))
 
-    async def get_invoice_headers(self, _is_retry: bool = False) -> List[InvoiceHeader]:
+    async def get_invoice_headers(self) -> List[InvoiceHeader]:
         """Get headers of available invoices."""
         url = urljoin(self.base_url, "secure/get_invoice_headers_for_customer.do")
         params = {
             "customerId": self.customer_number,  # yep, customerId, not *Number here
         }
-        async with self.session.get(
-            url, params=params, raise_for_status=True
-        ) as response:
-            if not _is_retry and await self._retry_after_login(response):
-                return await self.get_invoice_headers(_is_retry=True)
-            response_data = await response.json()
+
+        response_data = await self._request_with_retry(
+            method="GET", url=url, params=params
+        )
+        assert isinstance(response_data, (list, tuple))
 
         return [
             InvoiceHeader(raw_data=_unmarshal(invoice_header))
@@ -153,6 +138,29 @@ class Pytekukko:
 
         async with self.session.get(url, raise_for_status=True) as response:
             await _flush_response(response)
+
+    async def _request_with_retry(
+        self, raise_for_first_status: bool = True, **request_kwargs: Any
+    ) -> Any:
+        raise_for_status = raise_for_first_status
+        for _ in range(2):
+            async with self.session.request(
+                **request_kwargs, raise_for_status=raise_for_status
+            ) as response:
+                if await self._retry_after_login(response):
+                    raise_for_status = True
+                    continue
+                return await response.json()
+        # Original request and login (succeeded) already done twice, give up and
+        # simulate a 401. Should not happen, possibly means we have a false positive in
+        # login success check, or something's wrong with session handling after it.
+        raise ClientResponseError(
+            request_info=response.request_info,
+            history=response.history,
+            status=HTTPStatus.UNAUTHORIZED,
+            message="Login loop detected",
+            headers=response.headers,
+        )
 
     async def _retry_after_login(self, response: ClientResponse) -> bool:
         if (  # general logged out cases
