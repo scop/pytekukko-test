@@ -103,7 +103,7 @@ def update_google_calendar(  # pylint: disable=too-many-locals
             "location": pos_event_data.location or None,
             "start": {"date": date},
             "end": {"date": date},
-            # Reminders is "for the authenticated user" per docs.
+            # Reminders are "for the authenticated user" per docs.
             # So for the service account, not the calendar owner :(
             # No way to set this for the "actual" calendar user from here,
             # at least while using a service account.

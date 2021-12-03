@@ -144,7 +144,7 @@ def _unmarshal(data: Any) -> Any:
     Unmarshal items in parsed JSON to more specific objects.
 
     :param data: parsed JSON data
-    :return: unmarshaled data
+    :return: unmarshalled data
     """
     if isinstance(data, dict):
         for key, value in data.items():
