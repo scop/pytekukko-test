@@ -1,7 +1,6 @@
 """Jätekukko Omakukko client."""
 
 from datetime import date, datetime
-from http import HTTPStatus
 from typing import Any, Dict, List, Union, cast
 from urllib.parse import urljoin
 
@@ -152,13 +151,13 @@ class Pytekukko:
                     continue
                 return await response.json()
         # Original request and login (succeeded) already done twice, give up and
-        # simulate a 401. Should not happen, possibly means we have a false positive in
+        # raise. Should not happen, possibly means we have a false positive in
         # login success check, or something's wrong with session handling after it.
         raise ClientResponseError(
             request_info=response.request_info,
             history=response.history,
-            status=HTTPStatus.UNAUTHORIZED,
-            message="Login loop detected",
+            status=response.status,
+            message="Pytekukko internal error, login loop detected",
             headers=response.headers,
         )
 
