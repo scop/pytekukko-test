@@ -12,40 +12,6 @@ __version__ = "0.9.0"
 DEFAULT_BASE_URL = "https://tilasto.jatekukko.fi/jatekukko/"
 
 
-async def _drain(response: ClientResponse) -> None:
-    """
-    Consume and discard response.
-
-    Useful for keeping the connection alive without caring about response content.
-    """
-    async for _ in response.content.iter_chunked(1024):
-        pass
-
-
-def _unmarshal(data: Any) -> Any:
-    """
-    Unmarshal items in parsed JSON to more specific objects.
-
-    :param data: parsed JSON data
-    :return: unmarshaled data
-    """
-    if isinstance(data, dict):
-        for key, value in data.items():
-            data[key] = _unmarshal(value)
-    elif isinstance(data, list):
-        for i, value in enumerate(data):
-            data[i] = _unmarshal(value)
-    elif isinstance(data, str):
-        try:
-            data = datetime.strptime(data, "%Y-%m-%d").date()
-        except ValueError:
-            try:
-                data = datetime.strptime(data, "%H:%M").time()
-            except ValueError:
-                pass
-    return data
-
-
 class Pytekukko:
     """Client for accessing Jätekukko Omakukko services."""
 
@@ -171,3 +137,37 @@ class Pytekukko:
             _ = await self.login()
             return True
         return False
+
+
+def _unmarshal(data: Any) -> Any:
+    """
+    Unmarshal items in parsed JSON to more specific objects.
+
+    :param data: parsed JSON data
+    :return: unmarshaled data
+    """
+    if isinstance(data, dict):
+        for key, value in data.items():
+            data[key] = _unmarshal(value)
+    elif isinstance(data, list):
+        for i, value in enumerate(data):
+            data[i] = _unmarshal(value)
+    elif isinstance(data, str):
+        try:
+            data = datetime.strptime(data, "%Y-%m-%d").date()
+        except ValueError:
+            try:
+                data = datetime.strptime(data, "%H:%M").time()
+            except ValueError:
+                pass
+    return data
+
+
+async def _drain(response: ClientResponse) -> None:
+    """
+    Consume and discard response.
+
+    Useful for keeping the connection alive without caring about response content.
+    """
+    async for _ in response.content.iter_chunked(1024):
+        pass
