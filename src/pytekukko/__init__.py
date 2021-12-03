@@ -13,7 +13,7 @@ __version__ = "0.9.0"
 DEFAULT_BASE_URL = "https://tilasto.jatekukko.fi/jatekukko/"
 
 
-async def _flush_response(response: ClientResponse) -> None:
+async def _drain(response: ClientResponse) -> None:
     """
     Consume and discard response.
 
@@ -137,7 +137,7 @@ class Pytekukko:
         url = urljoin(self.base_url, "j_acegi_logout_elcustrap")
 
         async with self.session.get(url, raise_for_status=True) as response:
-            await _flush_response(response)
+            await _drain(response)
 
     async def _request_with_retry(
         self, raise_for_first_status: bool = True, **request_kwargs: Any
@@ -168,7 +168,7 @@ class Pytekukko:
         ) or (  # get_collection_schedule does not redirect but gives a 500
             response.status == 500 and "get_collection_schedule" in response.url.path
         ):
-            await _flush_response(response)
+            await _drain(response)
             _ = await self.login()
             return True
         return False
