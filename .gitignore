@@ -1,7 +1,7 @@
 *.egg-info/
-.python-version
-/*.cookies
+*~
 /.env
+/.python-version
 /build/
 /dist/
 /service_account.json
