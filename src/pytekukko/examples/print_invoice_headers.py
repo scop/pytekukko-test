@@ -36,7 +36,7 @@ async def run_example() -> None:
 
 def main() -> None:
     """Run example in event loop."""
-    asyncio.get_event_loop().run_until_complete(run_example())
+    asyncio.run(run_example())
 
 
 if __name__ == "__main__":
