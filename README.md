@@ -14,9 +14,9 @@ write ones.
 
 Usage in a nutshell:
 
-* construct an aiohttp [`ClientSession`](https://docs.aiohttp.org/en/stable/client_reference.html#client-session),
-* construct a `Pytekukko` client with it and your credentials,
-* invoke methods on the client.
+- construct an aiohttp [`ClientSession`](https://docs.aiohttp.org/en/stable/client_reference.html#client-session),
+- construct a `Pytekukko` client with it and your credentials,
+- invoke methods on the client.
 
 The Omakukko API uses cookie based sessions, use a persistent aiohttp
 [`CookieJar`](https://docs.aiohttp.org/en/stable/client_reference.html#cookiejar)
@@ -32,9 +32,9 @@ package. Executables and dependencies for these are installed when the
 package is installed with the `examples` extra, invoke them with
 `--help` for usage and setup information:
 
-* `pytekukko-invoice-headers`: output basic info on invoices in JSON
-* `pytekukko-next-collections`: output next collection dates in JSON
-* `pytekukko-update-google-calendar`: update Google Calendar with
+- `pytekukko-invoice-headers`: output basic info on invoices in JSON
+- `pytekukko-next-collections`: output next collection dates in JSON
+- `pytekukko-update-google-calendar`: update Google Calendar with
   events for next collections
 
 ## Disclaimer
