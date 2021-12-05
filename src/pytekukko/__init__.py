@@ -1,6 +1,7 @@
 """Jätekukko Omakukko client."""
 
 from datetime import date, datetime
+from http import HTTPStatus
 from typing import Any, Dict, List, Union, cast
 from urllib.parse import urljoin
 
@@ -131,7 +132,8 @@ class Pytekukko:
         if (  # general logged out cases
             response.history and response.url.path.endswith("/login.do")
         ) or (  # get_collection_schedule does not redirect but gives an error
-            response.status in (400, 500)
+            response.status
+            in (HTTPStatus.BAD_REQUEST, HTTPStatus.INTERNAL_SERVER_ERROR)
             and "get_collection_schedule" in response.url.path
         ):
             await _drain(response)
