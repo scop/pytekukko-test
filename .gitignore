@@ -2,6 +2,7 @@
 *~
 /.env
 /.python-version
+/.tox/
 /build/
 /dist/
 /service_account.json
