@@ -31,7 +31,13 @@ def example_argparser(description: str) -> ArgumentParser:
     """Set up example argument parser."""
     dotenv.load_dotenv()
 
-    argparser = ArgumentParser(description=description)
+    argparser = ArgumentParser(
+        description=description,
+        epilog=(
+            "Environment variable defaults are loaded from .env "
+            "in the current directory."
+        ),
+    )
     argparser.add_argument(
         "--customer-number",
         type=str,
