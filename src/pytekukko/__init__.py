@@ -63,7 +63,7 @@ class Pytekukko:
         params = {"customerNumber": self.customer_number, "pos": pos}
 
         response_data = await self._request_with_retry(
-            method="GET", url=url, params=params, raise_for_first_status=False
+            method="GET", url=url, params=params
         )
 
         return cast(List[date], _unmarshal(response_data))
@@ -105,41 +105,35 @@ class Pytekukko:
         async with self.session.get(url, raise_for_status=True) as response:
             await _drain(response)
 
-    async def _request_with_retry(
-        self, raise_for_first_status: bool = True, **request_kwargs: Any
-    ) -> Any:
-        raise_for_status = raise_for_first_status
-        for _ in range(2):
-            async with self.session.request(
-                **request_kwargs, raise_for_status=raise_for_status
-            ) as response:
-                if await self._retry_after_login(response):
-                    raise_for_status = True
-                    continue
-                return await response.json()
-        # Original request and login (succeeded) already done twice, give up and
-        # raise. Should not happen, possibly means we have a false positive in
-        # login success check, or something's wrong with session handling after it.
-        raise ClientResponseError(
-            request_info=response.request_info,
-            history=response.history,
-            status=response.status,
-            message="Pytekukko internal error, login loop detected",
-            headers=response.headers,
-        )
+    async def _request_with_retry(self, **request_kwargs: Any) -> Any:
+        """
+        Do a request, with automatic login and retry if session is logged out.
 
-    async def _retry_after_login(self, response: ClientResponse) -> bool:
-        if (  # general logged out cases
-            response.history and response.url.path.endswith("/login.do")
-        ) or (  # get_collection_schedule does not redirect but gives an error
-            response.status
-            in (HTTPStatus.BAD_REQUEST, HTTPStatus.INTERNAL_SERVER_ERROR)
-            and "get_collection_schedule" in response.url.path
-        ):
-            await _drain(response)
-            _ = await self.login()
-            return True
-        return False
+        :param raise_for_first_status: whether first unsuccessful status should raise;
+            False allows for handling special cases that give errors instead of
+            redirecting to login page
+        :param request_kwargs: kwargs to pass to self.session.request
+        """
+        try:
+            async with self.session.request(
+                **request_kwargs, raise_for_status=True
+            ) as response:
+                if response.history and response.url.path.endswith("/login.do"):
+                    await _drain(response)
+                else:
+                    return await response.json()
+        except ClientResponseError as ex:
+            if not (
+                ex.status in (HTTPStatus.BAD_REQUEST, HTTPStatus.INTERNAL_SERVER_ERROR)
+                and "get_collection_schedule" in ex.request_info.url.path
+            ):
+                raise
+
+        _ = await self.login()
+        async with self.session.request(
+            **request_kwargs, raise_for_status=True
+        ) as response:
+            return await response.json()
 
 
 def _unmarshal(data: Any) -> Any:

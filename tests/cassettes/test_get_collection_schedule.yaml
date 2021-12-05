@@ -1,39 +1,6 @@
 interactions:
 - request:
     body: null
-    headers: {}
-    method: GET
-    uri: https://tilasto.jatekukko.fi/jatekukko/get_collection_schedule.do?customerNumber=00-0000000-00&pos=1234
-  response:
-    body:
-      string: '{}'
-    headers:
-      Cache-Control:
-      - no-cache, no-store, must-revalidate
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sun, 05 Sep 2021 08:16:31 GMT
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 GMT
-      Pragma:
-      - no-cache
-      Server:
-      - nginx
-      Transfer-Encoding:
-      - chunked
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
-    status:
-      code: 500
-      message: Internal Server Error
-    url: https://tilasto.jatekukko.fi/jatekukko/get_collection_schedule.do?customerNumber=00-0000000-00&pos=1234
-- request:
-    body: null
     headers:
       Accept:
       - '*/*'
