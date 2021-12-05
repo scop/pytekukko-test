@@ -130,8 +130,9 @@ class Pytekukko:
     async def _retry_after_login(self, response: ClientResponse) -> bool:
         if (  # general logged out cases
             response.history and response.url.path.endswith("/login.do")
-        ) or (  # get_collection_schedule does not redirect but gives a 500
-            response.status == 500 and "get_collection_schedule" in response.url.path
+        ) or (  # get_collection_schedule does not redirect but gives an error
+            response.status in (400, 500)
+            and "get_collection_schedule" in response.url.path
         ):
             await _drain(response)
             _ = await self.login()
