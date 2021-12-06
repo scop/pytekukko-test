@@ -1,4 +1,4 @@
-pytest
+pytest >=6
 pytest-asyncio
 pytest-vcr
 # See note in test_pytekukko.vcr_config
