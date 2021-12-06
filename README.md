@@ -41,4 +41,4 @@ package is installed with the `examples` extra, invoke them with
 ## Disclaimer
 
 This package is not supported by or endorsed by Jätekukko. Do not
-bother them with issues related to it.
+bother them with questions or issues related to it.
