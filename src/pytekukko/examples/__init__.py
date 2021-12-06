@@ -6,8 +6,8 @@ from argparse import ArgumentParser, Namespace
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
-import dotenv
 from aiohttp import ClientSession, CookieJar
+from dotenv import find_dotenv, load_dotenv
 
 from pytekukko import Pytekukko
 
@@ -27,15 +27,22 @@ def arg_environ_default(
     }
 
 
+def load_pytekukko_dotenv() -> bool:
+    """Load our .env."""
+    return load_dotenv(os.environ.get("PYTEKUKKO_DOTENV", find_dotenv(usecwd=True)))
+
+
 def example_argparser(description: str) -> ArgumentParser:
     """Set up example argument parser."""
-    dotenv.load_dotenv()
+    _ = load_pytekukko_dotenv()
 
     argparser = ArgumentParser(
         description=description,
         epilog=(
-            "Environment variable defaults are loaded from .env "
-            "in the current directory."
+            "Environment variable defaults are loaded from the path set in "
+            "$PYTEKUKKO_DOTENV in environment, falling back to .env if not set. "
+            "If the path is relative, it is searched in directories starting from the "
+            "current directory, walking towards the file system root."
         ),
     )
     argparser.add_argument(

@@ -5,11 +5,11 @@ import os
 from typing import Any, Dict, TypeVar
 from urllib.parse import parse_qs, quote_plus, urlparse, urlunparse
 
-import dotenv
 import pytest
 from aiohttp import ClientSession
 
 from pytekukko import Pytekukko
+from pytekukko.examples import load_pytekukko_dotenv
 
 T = TypeVar("T", bound=Dict[str, Any])  # pylint: disable=invalid-name
 
@@ -52,8 +52,8 @@ def before_record_response(response: T) -> T:
 
 @pytest.fixture(scope="module", autouse=True)
 def load_dotenv() -> None:
-    """Load environment."""
-    dotenv.load_dotenv()
+    """Load our environment."""
+    _ = load_pytekukko_dotenv()
 
 
 @pytest.fixture(scope="module")
