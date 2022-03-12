@@ -51,18 +51,18 @@ skip_missing_interpreters = true
 deps = -rrequirements-test.txt
 extras = examples
 commands =
-    {envpython} -X dev -bb -m pytest {posargs}
-    {envpython} -X dev -bb -W error -m pytekukko.examples.print_collection_schedules --help
-    {envpython} -X dev -bb -W error -m pytekukko.examples.print_invoice_headers --help
-    {envpython} -X dev -bb -W error -m pytekukko.examples.print_next_collections --help
-    {envpython} -X dev -bb -W error -m pytekukko.examples.update_google_calendar --help
+  {envpython} -X dev -bb -m pytest {posargs}
+  {envpython} -X dev -bb -W error -m pytekukko.examples.print_collection_schedules --help
+  {envpython} -X dev -bb -W error -m pytekukko.examples.print_invoice_headers --help
+  {envpython} -X dev -bb -W error -m pytekukko.examples.print_next_collections --help
+  {envpython} -X dev -bb -W error -m pytekukko.examples.update_google_calendar --help
 [testenv:pyston3]
 basepython = pyston3
 [gh-actions]
 python =
-    3.8: py38
-    3.9: py39
-    3.10: py310
-    3.11: py311
-    pypy-3.9: pypy3
+  3.8: py38
+  3.9: py39
+  3.10: py310
+  3.11: py311
+  pypy-3.9: pypy3
 """
