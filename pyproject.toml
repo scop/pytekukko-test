@@ -7,6 +7,13 @@ target-version = ["py38", "py39", "py310"]
 [tool.isort]
 profile = "black"
 
+[tool.mypy]
+python_version = "3.8"
+mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
+show_error_codes = true
+strict = true
+warn_unreachable = true
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 filterwarnings = ["error"]
