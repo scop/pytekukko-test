@@ -56,6 +56,10 @@ commands =
   {envpython} -X dev -bb -W error -m pytekukko.examples.print_invoice_headers --help
   {envpython} -X dev -bb -W error -m pytekukko.examples.print_next_collections --help
   {envpython} -X dev -bb -W error -m pytekukko.examples.update_google_calendar --help
+[testenv:py311]
+setenv =
+  # https://github.com/aio-libs/yarl/issues/680
+  YARL_NO_EXTENSIONS = 1
 [testenv:pyston3]
 basepython = pyston3
 [gh-actions]
