@@ -55,6 +55,11 @@ class CustomerData:
         """Get customer number."""
         return cast(str, self.raw_data["asiakasnro"])
 
+    @property
+    def name(self) -> str:
+        """Get customer name."""
+        return cast(str, self.raw_data["nimi"])
+
 
 @dataclass
 class InvoiceHeader:
