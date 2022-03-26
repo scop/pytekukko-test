@@ -22,8 +22,8 @@ try:
 except ImportError:  # Python < 3.9
     from backports import zoneinfo  # type: ignore[import]
 
-from google.oauth2 import service_account  # type: ignore
-from googleapiclient.discovery import build  # type: ignore
+from google.oauth2 import service_account  # type: ignore[import]
+from googleapiclient.discovery import build  # type: ignore[import]
 
 from pytekukko.examples import arg_environ_default, example_argparser, example_client
 
