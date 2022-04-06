@@ -63,6 +63,8 @@ setenv =
   AIOHTTP_NO_EXTENSIONS = 1
   # https://github.com/aio-libs/yarl/issues/680
   YARL_NO_EXTENSIONS = 1
+  # Similarly as for aiohttp and yarl
+  FROZENLIST_NO_EXTENSIONS = 1
   # https://github.com/certifi/python-certifi/issues/170#issuecomment-952885966
   PYTEKUKKO_CERTIFI_IMPORTLIB_RESOURCES_PATH_W = -W "default:path is deprecated:DeprecationWarning:certifi.core"
 [testenv:pyston3]
