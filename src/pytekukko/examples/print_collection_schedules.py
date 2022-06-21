@@ -19,8 +19,7 @@ async def run_example() -> None:
     async with client.session:
         services = await client.get_services()
         for service in services:
-            schedule = await client.get_collection_schedule(service)
-            if schedule:
+            if schedule := await client.get_collection_schedule(service):
                 data.append(
                     {
                         "name": service.name,
