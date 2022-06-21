@@ -11,7 +11,7 @@ from aiohttp import ClientSession
 from pytekukko import Pytekukko
 from pytekukko.examples import load_pytekukko_dotenv
 
-T = TypeVar("T", bound=Dict[str, Any])  # pylint: disable=invalid-name
+T = TypeVar("T", bound=Dict[str, Any])
 
 FAKE_CUSTOMER_NUMBER = "00-0000000-00"
 FAKE_PASSWORD = "secret"  # noqa: S105
