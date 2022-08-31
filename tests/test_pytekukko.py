@@ -33,8 +33,9 @@ def before_record_response(response: T) -> T:
 
     response["headers"].pop("Set-Cookie", None)
 
-    # As of vcrpy 4.2.0, query parameters filtered with filter_query_parameters
-    # do not end up filtered in response["url"], so address them here.
+    # As of vcrpy 4.2.1, filter_query_parameters does not affect
+    # parameters in response["url"], so address them here.
+    # Refs https://github.com/kevin1024/vcrpy/issues/517
     url_parts = urlparse(response["url"])
     new_query_parts = []
     query_params = parse_qs(url_parts.query)
@@ -67,10 +68,6 @@ def vcr_config() -> Dict[str, Any]:
         "before_record_response": before_record_response,
         "filter_headers": ["Cookie"],
         "filter_query_parameters": QUERY_PARAMETER_FILTERS,
-        # As of vcrpy 4.2.0, this is kind of a no-op as we don't get a response body
-        # recorded in redirection chains like the one at login at all. But the syntax
-        # is accepted, and we would like to filter these if they did exist, so prepare
-        # for it. Refs https://github.com/kevin1024/vcrpy/pull/581
         "filter_post_data_parameters": POST_DATA_FILTERS,
     }
 

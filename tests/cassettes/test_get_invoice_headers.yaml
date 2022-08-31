@@ -83,7 +83,9 @@ interactions:
       message: OK
     url: https://tilasto.jatekukko.fi/jatekukko/login.do
 - request:
-    body: null
+    body:
+      j_password: secret
+      j_username: 00-0000000-00
     headers:
       Accept:
       - '*/*'
