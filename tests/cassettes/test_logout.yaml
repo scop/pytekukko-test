@@ -9,7 +9,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.9 aiohttp/3.7.4.post0
+      - Python/3.8 aiohttp/3.8.1
     method: GET
     uri: https://tilasto.jatekukko.fi/jatekukko/j_acegi_logout_elcustrap
   response:
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Sat, 04 Sep 2021 08:58:30 GMT
+      - Wed, 31 Aug 2022 19:15:10 GMT
       Location:
       - https://tilasto.jatekukko.fi/jatekukko/sahas.jsp
       Server:
@@ -34,7 +34,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 302
       message: Found
@@ -49,7 +49,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.9 aiohttp/3.7.4.post0
+      - Python/3.8 aiohttp/3.8.1
     method: GET
     uri: https://tilasto.jatekukko.fi/jatekukko/sahas.jsp
   response:
@@ -60,8 +60,8 @@ interactions:
         charset=\"utf-8\">\r\n        <meta name=\"viewport\" content=\"width=device-width,
         initial-scale=1\">\r\n\r\n        <title>J\xE4tekukko Oy - S\xE4hk\xF6inen
         asiointi</title>\r\n\r\n        \r\n\r\n        \r\n\r\n        <link rel=\"icon\"
-        href=\"/jatekukko/images/favicon.png?timestamp=20210719-1436\" type=\"image/x-icon\">\r\n
-        \       <link rel=\"shortcut icon\" href=\"/jatekukko/images/favicon.png?timestamp=20210719-1436\"\r\n
+        href=\"/jatekukko/images/favicon.png?timestamp=20220818-1517\" type=\"image/x-icon\">\r\n
+        \       <link rel=\"shortcut icon\" href=\"/jatekukko/images/favicon.png?timestamp=20220818-1517\"\r\n
         \             type=\"image/x-icon\">\r\n        <link rel=\"manifest\" href=\"manifest.json\">\r\n\r\n
         \       \r\n\r\n\r\n\r\n<style id=\"antiClickjack\">body{display:none !important;}</style>\r\n\r\n<script
         type=\"text/javascript\">\r\n\tif (self === top) {\r\n\t\t\r\n\t\tvar antiClickjack
@@ -71,16 +71,16 @@ interactions:
         href=\"/jatekukko/js/dhtmlxSuite/codebase/dhtmlx.css\">\r\n<link rel=\"stylesheet\"
         type=\"text/css\" href=\"js/dhtmlxSuite/skins/terrace/dhtmlx.css\">\r\n<!--
         <link rel=\"STYLESHEET\" type=\"text/css\" href=\"/jatekukko/js/dhtmlxSuite/skins/skyblue/dhtmlx.css\">
-        -->\r\n\r\n\r\n<!-- ArcGIS -->\r\n<link rel=\"stylesheet\" href=\"https://js.arcgis.com/3.33/esri/css/esri.css\"
+        -->\r\n\r\n\r\n<!-- ArcGIS -->\r\n<link rel=\"stylesheet\" href=\"https://js.arcgis.com/3.39/esri/css/esri.css\"
         />\r\n\r\n<!-- Bootstrap -->\r\n<link rel=\"stylesheet\" type=\"text/css\"
         href=\"css/bootstrap/bootstrap.min.css\">\r\n\r\n<!-- KendoUI -->\r\n<link
         rel=\"stylesheet\" type=\"text/css\" href=\"/jatekukko/css/kendoui/kendo.common-bootstrap.min.css\">\r\n<link
         rel=\"stylesheet\" type=\"text/css\" href=\"/jatekukko/css/kendoui/kendo.bootstrap.min.css\">\r\n<link
         rel=\"stylesheet\" type=\"text/css\" href=\"css/kendoui/kendo.mobile.all.min.css\">\r\n\r\n<!--
-        Styles -->\r\n<link rel=\"stylesheet\" href=\"css/shared_base.css?timestamp=20210719-1436\">\r\n<link
-        rel=\"stylesheet\" href=\"css/sahas/main_base.css?timestamp=20210719-1436\">\r\n\r\n<link
-        rel=\"stylesheet\" href=\"css/shared.css?timestamp=20210719-1436\">\r\n<link
-        rel=\"stylesheet\" href=\"css/sahas/main.css?timestamp=20210719-1436\">\r\n\r\n\r\n
+        Styles -->\r\n<link rel=\"stylesheet\" href=\"css/shared_base.css?timestamp=20220818-1517\">\r\n<link
+        rel=\"stylesheet\" href=\"css/sahas/main_base.css?timestamp=20220818-1517\">\r\n\r\n<link
+        rel=\"stylesheet\" href=\"css/shared.css?timestamp=20220818-1517\">\r\n<link
+        rel=\"stylesheet\" href=\"css/sahas/main.css?timestamp=20220818-1517\">\r\n\r\n\r\n
         \       \r\n\r\n<link href='https://fonts.googleapis.com/css?family=Lato:300,300Italic,400,400italic,700,700italic'
         rel='stylesheet' type='text/css'/>\r\n<link rel=\"stylesheet\" type=\"text/css\"
         href=\"https://fonts.googleapis.com/css?family=PT+Sans\"/>\r\n<link href=\"https://fonts.googleapis.com/css?family=Signika:300,400\"
@@ -197,7 +197,7 @@ interactions:
         type=\"button\" class=\"btn btn-primary btn-block long-text-button\" data-action=\"join-waste-collection\">\r\n\t\t\tLiity
         j\xE4tehuoltoon\r\n\t\t</button>\r\n\t\t\r\n\t</div>\r\n\r\n\r\n\r\n\t<div
         class=\"row\">\r\n\t\t<h4></h4>\r\n\t\t\r\n\t\t\t\r\n\t\t\r\n\t\t<button type=\"button\"
-        class=\"btn btn-primary btn-block long-text-button\" data-action=\"make-compost-notice\">\r\n\t\t\tT\xE4yt\xE4
+        class=\"btn btn-primary btn-block long-text-button compost-note\" data-action=\"make-compost-notice\">\r\n\t\t\tT\xE4yt\xE4
         kompostointi-ilmoitus\r\n\t\t</button>\r\n\t\t\r\n\t</div>\r\n\r\n\r\n\r\n\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\r\n\t\r\n\r\n\t\r\n\t\r\n\r\n\t\r\n\t\r\n\t<div
         class=\"row\">\r\n\t\t<h4></h4>\r\n\t\t\r\n\t\t\t\r\n\t\t\r\n\t\t<button type=\"button\"
         class=\"btn btn-primary btn-block long-text-button\" data-action=\"give-feedback\"
@@ -543,8 +543,8 @@ interactions:
         modal-lg\">\r\n\t\t<div class=\"modal-content\">\r\n\t\t\t<div class=\"modal-body\">\r\n\r\n\t\t\t\t<div
         class=\"page-header\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t<button class=\"pull-right
         btn-dismiss\" aria-label=\"Sulje\" data-action=\"cancel-all\"></button>\r\n
-        \                   <h1>Kompostointi-ilmoitus</h1>\r\n\t\t\t\t</div>\r\n\t\t
-        \   \t\r\n\t\t    \t<div class=\"form\"></div>\r\n\r\n\t\t    \t<div class=\"global-validation-error
+        \                   <h1></h1>\r\n\t\t\t\t</div>\r\n\t\t    \t\r\n\t\t    \t<div
+        class=\"form\"></div>\r\n\r\n\t\t    \t<div class=\"global-validation-error
         alert alert-danger\" style=\"display:none\">\r\n\t\t    \t\tT\xE4yt\xE4 puuttuvat
         kent\xE4t\r\n\t\t    \t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n\r\n\r\n<div
         id=\"register-modal\" class=\"modal\" style=\"display:none\">\r\n\t<div class=\"modal-dialog
@@ -982,7 +982,7 @@ interactions:
         src=\"/jatekukko/js/dhtmlxSuite/sources/dhtmlxGrid/codebase/dhtmlxgrid.js\"></script>\r\n<script
         src=\"/jatekukko/js/dhtmlxSuite/sources/dhtmlxMessage/codebase/dhtmlxmessage.js\"></script>\r\n\r\n<!--
         Overwrite DHTMLX dhxform_btn role. This must be loaded after DHTMLX! -->\r\n<script
-        src=\"/jatekukko/js/dhtmlx_form_postload.js?timestamp=20210719-1436\"></script>\r\n\r\n<!--
+        src=\"/jatekukko/js/dhtmlx_form_postload.js?timestamp=20220818-1517\"></script>\r\n\r\n<!--
         \ Kendo UI -->\r\n<script src=\"/jatekukko/js/kendoui/kendo.core.min.js\"></script>\t\r\n<script
         src=\"/jatekukko/js/kendoui/kendo.data.min.js\"></script>\r\n<script src=\"/jatekukko/js/kendoui/kendo.dom.min.js\"></script>\r\n<script
         src=\"/jatekukko/js/kendoui/kendo.popup.min.js\"></script>\r\n<script src=\"/jatekukko/js/kendoui/kendo.list.min.js\"></script>\r\n<script
@@ -1004,53 +1004,53 @@ interactions:
         Set kendo to right culture -->\r\n<script>\r\n\tkendo.culture(\"fi_FI\".replace('_',
         '-'));\r\n</script>\r\n\r\n\r\n<!-- ArcGIS -->\r\n<script>\r\n    var dojoConfig
         = {\r\n        locale: 'fi_FI'.toLowerCase().replace('_', '-')\r\n    };\r\n</script>\r\n<script
-        src=\"https://js.arcgis.com/3.33/\"></script>\r\n\r\n<!-- Bootstrap -->\r\n<script
+        src=\"https://js.arcgis.com/3.39/\"></script>\r\n\r\n<!-- Bootstrap -->\r\n<script
         src=\"/jatekukko/js/bootstrap/bootstrap.min.js\"></script>\r\n\r\n<!-- Custom
-        -->\r\n<script src=\"/jatekukko/js/dhtmlx_ext.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/dhtmlx_ext_week_calendar.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/common.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/validators.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/google.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/shared/timeout.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/shared/vimeo.js?timestamp=20210719-1436\"></script>\r\n\r\n<script
-        src=\"/jatekukko/js/sahas/application.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/login.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/service_windows.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/shoppingcart.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/service_akp.js?timestamp=20210719-1436\"></script>\r\n\r\n<script
-        src=\"/jatekukko/js/sahas/tabs/service-list.js?timestamp=20210719-1436\"></script>\r\n\r\n<script
-        src=\"/jatekukko/js/sahas/tabs/customer-data.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n<script
-        src=\"/jatekukko/js/sahas/tabs/feedback.js?timestamp=20210719-1436\"></script>\r\n\r\n<script
-        src=\"/jatekukko/js/sahas/tabs/user-details.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/tabs/login-page.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n<script
-        src=\"/jatekukko/js/sahas/tabs/invoice-list.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n<script
-        src=\"/jatekukko/js/sahas/windows/lost-password-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/change-join-type-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/akp-location-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/bookup-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/feedback-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/password-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/change-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/terminate-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/create-order-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/form-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/compost-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/register-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/create-new-user-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/email-phone-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/kimpaksi-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/order-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/resign-kimppa-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/sahas/windows/collection-schedule-window.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n\t<script
-        src=\"/jatekukko/js/sahas/windows/repsikka-window.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t<script
-        src=\"/jatekukko/js/sahas/windows/waste-water-window.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n<script
-        src=\"/jatekukko/js/components/tabbar.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/components/terms-window.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/components/terms-banner.js?timestamp=20210719-1436\"></script>\r\n<script
-        src=\"/jatekukko/js/components/video-popup.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n\r\n<script
+        -->\r\n<script src=\"/jatekukko/js/dhtmlx_ext.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/dhtmlx_ext_week_calendar.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/common.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/validators.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/google.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/shared/timeout.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/shared/vimeo.js?timestamp=20220818-1517\"></script>\r\n\r\n<script
+        src=\"/jatekukko/js/sahas/application.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/login.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/service_windows.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/shoppingcart.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/service_akp.js?timestamp=20220818-1517\"></script>\r\n\r\n<script
+        src=\"/jatekukko/js/sahas/tabs/service-list.js?timestamp=20220818-1517\"></script>\r\n\r\n<script
+        src=\"/jatekukko/js/sahas/tabs/customer-data.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n<script
+        src=\"/jatekukko/js/sahas/tabs/feedback.js?timestamp=20220818-1517\"></script>\r\n\r\n<script
+        src=\"/jatekukko/js/sahas/tabs/user-details.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/tabs/login-page.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n<script
+        src=\"/jatekukko/js/sahas/tabs/invoice-list.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n<script
+        src=\"/jatekukko/js/sahas/windows/lost-password-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/change-join-type-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/akp-location-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/bookup-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/feedback-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/password-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/change-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/terminate-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/create-order-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/form-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/compost-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/register-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/create-new-user-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/email-phone-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/kimpaksi-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/order-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/resign-kimppa-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/sahas/windows/collection-schedule-window.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n\t<script
+        src=\"/jatekukko/js/sahas/windows/repsikka-window.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t<script
+        src=\"/jatekukko/js/sahas/windows/waste-water-window.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n<script
+        src=\"/jatekukko/js/components/tabbar.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/components/terms-window.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/components/terms-banner.js?timestamp=20220818-1517\"></script>\r\n<script
+        src=\"/jatekukko/js/components/video-popup.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n\r\n<script
         type=\"text/javascript\">\r\n\tvar baseurl = \"/jatekukko\";\r\n\r\n\twindow.dhx_globalImgPath
         = \"/jatekukko/js/dhtmlxSuite/dhtmlxCombo/codebase/imgs/\";\r\n\r\n\tsiteLanguage=
-        \"fi_FI\";\r\n\t\r\n\t\r\n</script>\r\n\r\n<script src=\"/jatekukko/js/sahas/main.js?timestamp=20210719-1436\"></script>\r\n\r\n\r\n<script>\r\n
+        \"fi_FI\";\r\n\t\r\n\t\r\n</script>\r\n\r\n<script src=\"/jatekukko/js/sahas/main.js?timestamp=20220818-1517\"></script>\r\n\r\n\r\n<script>\r\n
         \ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\r\n
         \ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\r\n
         \ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\r\n
@@ -1062,7 +1062,18 @@ interactions:
         \       }\r\n\r\n        function setBodyPaddingForFooter() {\r\n            var
         footerHeight = $('body > footer').height();\r\n            $('body').css('padding-bottom',
         footerHeight + 'px');\r\n        }\r\n\r\n        $(window).on('resize', setBodyPaddingForFooter);\r\n
-        \       setBodyPaddingForFooter();\r\n    </script>\r\n    </body>\r\n    </html>\r\n\r\n"
+        \       setBodyPaddingForFooter();\r\n    </script>\r\n\r\n    \r\n    <!--
+        begin SnapEngage code -->\r\n    <script type=\"text/javascript\">\r\n        (function()
+        {\r\n            var se = document.createElement('script'); se.type = 'text/javascript';
+        se.async = true;\r\n            se.src = 'https://storage.googleapis.com/snapengage-eu/js/c90e296a-9fa3-4879-a559-f74aae6e7ec4.js';\r\n
+        \           var done = false;\r\n            se.onload = se.onreadystatechange
+        = function() {\r\n                if (!done&&(!this.readyState||this.readyState==='loaded'||this.readyState==='complete'))
+        {\r\n                    done = true;\r\n                    /* Place your
+        SnapEngage JS API code below */\r\n                    /* SnapEngage.allowChatSound(true);
+        Example JS API: Enable sounds for Visitors. */\r\n                }\r\n            };\r\n
+        \           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(se,
+        s);\r\n        })();\r\n    </script>\r\n    <!-- end SnapEngage code -->\r\n
+        \   \r\n    </body>\r\n    </html>\r\n\r\n"
     headers:
       Connection:
       - keep-alive
@@ -1075,7 +1086,7 @@ interactions:
       Content-Type:
       - text/html;charset=utf-8
       Date:
-      - Sat, 04 Sep 2021 08:58:31 GMT
+      - Wed, 31 Aug 2022 19:15:10 GMT
       Server:
       - nginx
       Strict-Transport-Security:
@@ -1085,7 +1096,7 @@ interactions:
       X-Frame-Options:
       - DENY
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 200
       message: OK
