@@ -9,7 +9,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.7.4.post0
+      - Python/3.8 aiohttp/3.8.1
     method: GET
     uri: https://tilasto.jatekukko.fi/jatekukko/secure/get_invoice_headers_for_customer.do?customerId=00-0000000-00
   response:
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Mon, 06 Sep 2021 19:09:45 GMT
+      - Wed, 31 Aug 2022 19:15:11 GMT
       Location:
       - https://tilasto.jatekukko.fi/jatekukko/login.do
       Server:
@@ -34,7 +34,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 302
       message: Found
@@ -49,7 +49,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.7.4.post0
+      - Python/3.8 aiohttp/3.8.1
     method: GET
     uri: https://tilasto.jatekukko.fi/jatekukko/login.do
   response:
@@ -67,7 +67,7 @@ interactions:
       Content-Type:
       - text/html;charset=utf-8
       Date:
-      - Mon, 06 Sep 2021 19:09:45 GMT
+      - Wed, 31 Aug 2022 19:15:11 GMT
       Server:
       - nginx
       Strict-Transport-Security:
@@ -77,7 +77,7 @@ interactions:
       X-Frame-Options:
       - DENY
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 200
       message: OK
@@ -96,21 +96,20 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.7.4.post0
+      - Python/3.8 aiohttp/3.8.1
       X-Requested-With:
       - XMLHttpRequest
     method: POST
     uri: https://tilasto.jatekukko.fi/jatekukko/j_acegi_security_check?target=2
   response:
-    body:
-      string: ''
+    body: {}
     headers:
       Connection:
       - keep-alive
       Content-Length:
       - '0'
       Date:
-      - Mon, 06 Sep 2021 19:09:45 GMT
+      - Wed, 31 Aug 2022 19:15:11 GMT
       Location:
       - https://tilasto.jatekukko.fi/jatekukko/secure/welcome.do
       Server:
@@ -120,7 +119,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 303
       message: See Other
@@ -135,14 +134,13 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.7.4.post0
+      - Python/3.8 aiohttp/3.8.1
       X-Requested-With:
       - XMLHttpRequest
     method: GET
     uri: https://tilasto.jatekukko.fi/jatekukko/secure/welcome.do
   response:
-    body:
-      string: ''
+    body: {}
     headers:
       Connection:
       - keep-alive
@@ -151,7 +149,7 @@ interactions:
       Content-Security-Policy:
       - frame-ancestors 'none'
       Date:
-      - Mon, 06 Sep 2021 19:09:46 GMT
+      - Wed, 31 Aug 2022 19:15:11 GMT
       Location:
       - https://tilasto.jatekukko.fi/jatekukko/secure/well.do
       Server:
@@ -161,7 +159,7 @@ interactions:
       X-Frame-Options:
       - DENY
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 303
       message: See Other
@@ -176,7 +174,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.7.4.post0
+      - Python/3.8 aiohttp/3.8.1
       X-Requested-With:
       - XMLHttpRequest
     method: GET
@@ -219,7 +217,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Sep 2021 19:09:46 GMT
+      - Wed, 31 Aug 2022 19:15:11 GMT
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Pragma:
@@ -231,7 +229,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 200
       message: OK
@@ -254,7 +252,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Sep 2021 19:09:46 GMT
+      - Wed, 31 Aug 2022 19:15:11 GMT
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Pragma:
@@ -268,7 +266,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 200
       message: OK
