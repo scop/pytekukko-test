@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from datetime import date
-from typing import Any, Dict, Optional, cast
+from typing import Any, Optional, cast
 
 
 @dataclass
@@ -17,7 +17,7 @@ class Service:
     and all data retrieved from the service is available in the ``raw_data`` dict.
     """
 
-    raw_data: Dict[str, Any]
+    raw_data: dict[str, Any]
 
     @property
     def name(self) -> str:
@@ -48,7 +48,7 @@ class CustomerData:
     and all data retrieved from the service is available in the ``raw_data`` dict.
     """
 
-    raw_data: Dict[str, Any]
+    raw_data: dict[str, Any]
 
     @property
     def customer_number(self) -> str:
@@ -70,7 +70,7 @@ class InvoiceHeader:
     and all data retrieved from the service is available in the ``raw_data`` dict.
     """
 
-    raw_data: Dict[str, Any]
+    raw_data: dict[str, Any]
 
     @property
     def name(self) -> str:

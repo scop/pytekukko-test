@@ -2,7 +2,7 @@
 
 from datetime import date, datetime
 from http import HTTPStatus
-from typing import Any, Dict, List, Union, cast
+from typing import Any, Union, cast
 from urllib.parse import urljoin
 
 from aiohttp import ClientResponse, ClientResponseError, ClientSession
@@ -29,7 +29,7 @@ class Pytekukko:
         self.password = password
         self.base_url = base_url
 
-    async def get_customer_data(self) -> Dict[str, List[CustomerData]]:
+    async def get_customer_data(self) -> dict[str, list[CustomerData]]:
         """Get customer data."""
         url = urljoin(self.base_url, "secure/get_customer_datas.do")
 
@@ -40,7 +40,7 @@ class Pytekukko:
             for customer_number, data in _unmarshal(response_data).items()
         }
 
-    async def get_services(self) -> List[Service]:
+    async def get_services(self) -> list[Service]:
         """Get services."""
         url = urljoin(self.base_url, "secure/get_services_by_customer_numbers.do")
         params = {"customerNumbers[]": self.customer_number}
@@ -52,7 +52,7 @@ class Pytekukko:
 
         return [Service(raw_data=_unmarshal(service)) for service in response_data]
 
-    async def get_collection_schedule(self, what: Union[Service, int]) -> List[date]:
+    async def get_collection_schedule(self, what: Union[Service, int]) -> list[date]:
         """
         Get collection schedule for a service.
 
@@ -66,9 +66,9 @@ class Pytekukko:
             method="GET", url=url, params=params
         )
 
-        return cast(List[date], _unmarshal(response_data))
+        return cast(list[date], _unmarshal(response_data))
 
-    async def get_invoice_headers(self) -> List[InvoiceHeader]:
+    async def get_invoice_headers(self) -> list[InvoiceHeader]:
         """Get headers of available invoices."""
         url = urljoin(self.base_url, "secure/get_invoice_headers_for_customer.do")
         params = {
@@ -85,7 +85,7 @@ class Pytekukko:
             for invoice_header in response_data
         ]
 
-    async def login(self) -> Dict[str, str]:
+    async def login(self) -> dict[str, str]:
         """Log in."""
         url = urljoin(self.base_url, "j_acegi_security_check")
         headers = (("X-Requested-With", "XMLHttpRequest"),)
@@ -96,7 +96,7 @@ class Pytekukko:
             url, headers=headers, params=params, data=data, raise_for_status=True
         ) as response:
             # TODO(scop): Check we got {"response":"OK"}?
-            return cast(Dict[str, str], await response.json())
+            return cast(dict[str, str], await response.json())
 
     async def logout(self) -> None:
         """Log out the current session."""
