@@ -2,7 +2,7 @@
 
 import datetime
 import os
-from typing import Any, Dict, TypeVar
+from typing import Any, TypeVar
 from urllib.parse import parse_qs, quote_plus, urlparse, urlunparse
 
 import pytest
@@ -11,7 +11,7 @@ from aiohttp import ClientSession
 from pytekukko import Pytekukko
 from pytekukko.examples import load_pytekukko_dotenv
 
-T = TypeVar("T", bound=Dict[str, Any])
+T = TypeVar("T", bound=dict[str, Any])
 
 FAKE_CUSTOMER_NUMBER = "00-0000000-00"
 FAKE_PASSWORD = "secret"  # noqa: S105
@@ -62,7 +62,7 @@ def load_dotenv() -> None:
 
 
 @pytest.fixture(scope="module")
-def vcr_config() -> Dict[str, Any]:
+def vcr_config() -> dict[str, Any]:
     """Get vcrpy configuration."""
     return {
         "before_record_response": before_record_response,

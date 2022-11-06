@@ -15,12 +15,8 @@ import asyncio
 import datetime
 import logging
 import sys
-from typing import Any, Dict, Mapping, NamedTuple, cast
-
-try:
-    import zoneinfo  # type: ignore[import]
-except ImportError:  # Python < 3.9
-    from backports import zoneinfo  # type: ignore[import]
+import zoneinfo
+from typing import Any, Mapping, NamedTuple, cast
 
 from google.oauth2 import service_account  # type: ignore[import]
 from googleapiclient.discovery import build  # type: ignore[import]
@@ -82,7 +78,7 @@ def update_google_calendar(  # pylint: disable=too-many-locals
         .execute()
     )
 
-    pos_events: Dict[str, Dict[str, Any]] = {}
+    pos_events: dict[str, dict[str, Any]] = {}
     for event in events["items"]:
         # Store first event for each pos for update, delete rest
         pos = event["extendedProperties"]["private"].get("pytekukko-pos")
