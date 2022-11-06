@@ -16,7 +16,8 @@ import datetime
 import logging
 import sys
 import zoneinfo
-from typing import Any, Mapping, NamedTuple, cast
+from collections.abc import Mapping
+from typing import Any, NamedTuple, cast
 
 from google.oauth2 import service_account  # type: ignore[import]
 from googleapiclient.discovery import build  # type: ignore[import]
