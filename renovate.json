@@ -1,5 +1,10 @@
 {
-  "extends": ["config:base", ":prConcurrentLimit20", ":preserveSemverRanges"],
+  "extends": [
+    "config:base",
+    ":enablePreCommit",
+    ":prConcurrentLimit20",
+    ":preserveSemverRanges"
+  ],
   "ignorePresets": [":dependencyDashboard"],
   "semanticCommits": "enabled",
   "commitMessageTopic": "{{depName}}",
@@ -7,9 +12,6 @@
     "fileMatch": [
       "(^|/)(requirements[\\w-]*\\.txt|\\.pre-commit-config\\.yaml)$"
     ]
-  },
-  "pre-commit": {
-    "enabled": true
   },
   "packageRules": [
     {
