@@ -16,7 +16,7 @@ flake8-noqa ==1.2.9
 
 isort ==5.10.1
 
-mypy ==0.981
+mypy ==0.990
 
 pylint ==2.15.5
 

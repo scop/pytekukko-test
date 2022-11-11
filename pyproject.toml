@@ -10,7 +10,6 @@ profile = "black"
 [tool.mypy]
 python_version = "3.9"
 mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
-show_error_codes = true
 enable_error_code = "ignore-without-code"
 strict = true
 warn_unreachable = true
