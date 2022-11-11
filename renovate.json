@@ -1,12 +1,6 @@
 {
-  "extends": [
-    "config:base",
-    ":prConcurrentLimit20",
-    ":preserveSemverRanges"
-  ],
-  "ignorePresets": [
-    ":dependencyDashboard"
-  ],
+  "extends": ["config:base", ":prConcurrentLimit20", ":preserveSemverRanges"],
+  "ignorePresets": [":dependencyDashboard"],
   "semanticCommits": "enabled",
   "commitMessageTopic": "{{depName}}",
   "pip_requirements": {
