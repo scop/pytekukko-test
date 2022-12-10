@@ -119,4 +119,3 @@ jobs:
           tox -e ${{ matrix.toxenv }} --skip-missing-interpreters false
         env:
           PYTEST_ADDOPTS: --vcr-record=none --color=yes
-          TOX_TESTENV_PASSENV: PYTEST_ADDOPTS
