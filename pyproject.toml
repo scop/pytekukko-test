@@ -94,6 +94,7 @@ isolated_build = true
 [testenv]
 deps = -rrequirements-test.txt
 extras = examples
+passenv = PYTEST_*
 commands =
   {envpython} -X dev -bb -m pytest {posargs}
   {envpython} -X dev -bb -W error -m pytekukko.examples.print_collection_schedules --help
