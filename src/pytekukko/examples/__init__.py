@@ -72,10 +72,10 @@ def example_argparser(description: str) -> ArgumentParser:
 def example_client(args: Namespace) -> tuple[Pytekukko, CookieJar, Optional[Path]]:
     """Set up example client."""
     if not args.customer_number:
-        print("customer number required", file=sys.stderr)
+        print("customer number required", file=sys.stderr)  # noqa: print-found
         sys.exit(2)
     if not args.password:
-        print("password required", file=sys.stderr)
+        print("password required", file=sys.stderr)  # noqa: print-found
         sys.exit(2)
     cookie_jar = CookieJar()
     cookie_jar_path = None
