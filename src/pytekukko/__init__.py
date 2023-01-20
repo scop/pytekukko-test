@@ -1,5 +1,6 @@
 """Jätekukko Omakukko client."""
 
+from contextlib import suppress
 from datetime import date, datetime
 from http import HTTPStatus
 from typing import Any, Union, cast
@@ -165,10 +166,8 @@ def _unmarshal(data: Any) -> Any:
         try:
             data = datetime.strptime(data, "%Y-%m-%d").date()
         except ValueError:
-            try:
+            with suppress(ValueError):
                 data = datetime.strptime(data, "%H:%M").time()
-            except ValueError:
-                pass
     return data
 
 
