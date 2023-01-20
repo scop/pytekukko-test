@@ -1,10 +1,12 @@
 """Jätekukko Omakukko client."""
 
 from contextlib import suppress
-from datetime import date, datetime
+from datetime import date
+from datetime import datetime as dt
 from http import HTTPStatus
 from typing import Any, Union, cast
 from urllib.parse import urljoin
+from zoneinfo import ZoneInfo
 
 from aiohttp import ClientResponse, ClientResponseError, ClientSession
 
@@ -12,6 +14,8 @@ from .models import CustomerData, InvoiceHeader, Service
 
 __version__ = "0.12.1"
 DEFAULT_BASE_URL = "https://tilasto.jatekukko.fi/jatekukko/"
+
+_SERVICE_TZ = ZoneInfo("Europe/Helsinki")
 
 
 class Pytekukko:
@@ -164,10 +168,12 @@ def _unmarshal(data: Any) -> Any:
             data[i] = _unmarshal(value)
     elif isinstance(data, str):
         try:
-            data = datetime.strptime(data, "%Y-%m-%d").date()
+            parsed = dt.strptime(data, "%Y-%m-%d").replace(tzinfo=_SERVICE_TZ)
+            data = parsed.date()
         except ValueError:
             with suppress(ValueError):
-                data = datetime.strptime(data, "%H:%M").time()
+                parsed = dt.strptime(data, "%H:%M").replace(tzinfo=_SERVICE_TZ)
+                data = parsed.time()
     return data
 
 
