@@ -55,7 +55,7 @@ def before_record_response(response: T) -> T:
 
 
 @pytest.fixture(scope="module", autouse=True)
-def load_dotenv() -> None:
+def _load_dotenv() -> None:
     """Load our environment."""
     _ = load_pytekukko_dotenv()
 
@@ -71,7 +71,7 @@ def vcr_config() -> dict[str, Any]:
     }
 
 
-@pytest.fixture(name="client", scope="function")
+@pytest.fixture(name="client")
 async def fixture_client() -> Pytekukko:
     """Get a client."""
     return Pytekukko(
