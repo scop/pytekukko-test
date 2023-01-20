@@ -10,9 +10,8 @@ from pytekukko.examples import example_argparser, example_client
 
 async def run_example() -> None:
     """Run the example."""
-
     client, cookie_jar, cookie_jar_path = example_client(
-        example_argparser(__doc__).parse_args()
+        example_argparser(__doc__).parse_args(),
     )
 
     data = []
@@ -23,7 +22,7 @@ async def run_example() -> None:
                     "name": invoice_header.name,
                     "due_date": invoice_header.due_date.isoformat(),
                     "total": invoice_header.total,
-                }
+                },
             )
         if not cookie_jar_path:
             await client.logout()

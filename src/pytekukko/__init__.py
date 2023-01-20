@@ -46,7 +46,9 @@ class Pytekukko:
         params = {"customerNumbers[]": self.customer_number}
 
         response_data = await self._request_with_retry(
-            method="GET", url=url, params=params
+            method="GET",
+            url=url,
+            params=params,
         )
         assert isinstance(response_data, (list, tuple))
 
@@ -63,7 +65,9 @@ class Pytekukko:
         params = {"customerNumber": self.customer_number, "pos": pos}
 
         response_data = await self._request_with_retry(
-            method="GET", url=url, params=params
+            method="GET",
+            url=url,
+            params=params,
         )
 
         return cast(list[date], _unmarshal(response_data))
@@ -76,7 +80,9 @@ class Pytekukko:
         }
 
         response_data = await self._request_with_retry(
-            method="GET", url=url, params=params
+            method="GET",
+            url=url,
+            params=params,
         )
         assert isinstance(response_data, (list, tuple))
 
@@ -93,7 +99,11 @@ class Pytekukko:
         data = {"j_username": self.customer_number, "j_password": self.password}
 
         async with self.session.post(
-            url, headers=headers, params=params, data=data, raise_for_status=True
+            url,
+            headers=headers,
+            params=params,
+            data=data,
+            raise_for_status=True,
         ) as response:
             # TODO(scop): Check we got {"response":"OK"}?
             return cast(dict[str, str], await response.json())
@@ -116,7 +126,8 @@ class Pytekukko:
         """
         try:
             async with self.session.request(
-                **request_kwargs, raise_for_status=True
+                **request_kwargs,
+                raise_for_status=True,
             ) as response:
                 if response.history and response.url.path.endswith("/login.do"):
                     await _drain(response)
@@ -131,7 +142,8 @@ class Pytekukko:
 
         _ = await self.login()
         async with self.session.request(
-            **request_kwargs, raise_for_status=True
+            **request_kwargs,
+            raise_for_status=True,
         ) as response:
             return await response.json()
 

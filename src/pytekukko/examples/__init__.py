@@ -13,7 +13,9 @@ from pytekukko import Pytekukko
 
 
 def arg_environ_default(
-    key: str, optional: bool = False, fallback: Optional[str] = None
+    key: str,
+    optional: bool = False,
+    fallback: Optional[str] = None,
 ) -> dict[str, Optional[str]]:
     """Get kwargs for environment backed argument addition."""
     help_text = f"default: ${key} from environment"
@@ -59,7 +61,8 @@ def example_argparser(description: str) -> ArgumentParser:
         "--cookie-jar-file",
         type=str,
         **arg_environ_default(  # type: ignore[arg-type]
-            "PYTEKUKKO_COOKIE_JAR_FILE", optional=True
+            "PYTEKUKKO_COOKIE_JAR_FILE",
+            optional=True,
         ),
     )
 
@@ -68,7 +71,6 @@ def example_argparser(description: str) -> ArgumentParser:
 
 def example_client(args: Namespace) -> tuple[Pytekukko, CookieJar, Optional[Path]]:
     """Set up example client."""
-
     if not args.customer_number:
         print("customer number required", file=sys.stderr)
         sys.exit(2)
