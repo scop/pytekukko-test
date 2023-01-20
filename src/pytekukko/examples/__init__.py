@@ -14,6 +14,7 @@ from pytekukko import Pytekukko
 
 def arg_environ_default(
     key: str,
+    *,
     optional: bool = False,
     fallback: Optional[str] = None,
 ) -> dict[str, Optional[str]]:
