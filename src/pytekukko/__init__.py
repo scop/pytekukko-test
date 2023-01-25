@@ -60,8 +60,7 @@ class Pytekukko:
         return [Service(raw_data=_unmarshal(service)) for service in response_data]
 
     async def get_collection_schedule(self, what: Union[Service, int]) -> list[date]:
-        """
-        Get collection schedule for a service.
+        """Get collection schedule for a service.
 
         :param what: the service or a "pos" value of one to get schedule for
         """
@@ -121,8 +120,7 @@ class Pytekukko:
             await _drain(response)
 
     async def _request_with_retry(self, **request_kwargs: Any) -> Any:
-        """
-        Do a request, with automatic login and retry if session is logged out.
+        """Do a request, with automatic login and retry if session is logged out.
 
         :param raise_for_first_status: whether first unsuccessful status should raise;
             False allows for handling special cases that give errors instead of
@@ -154,8 +152,7 @@ class Pytekukko:
 
 
 def _unmarshal(data: Any) -> Any:
-    """
-    Unmarshal items in parsed JSON to more specific objects.
+    """Unmarshal items in parsed JSON to more specific objects.
 
     :param data: parsed JSON data
     :return: unmarshalled data
@@ -178,8 +175,7 @@ def _unmarshal(data: Any) -> Any:
 
 
 async def _drain(response: ClientResponse) -> None:
-    """
-    Consume and discard response.
+    """Consume and discard response.
 
     Useful for keeping the connection alive without caring about response content.
     """

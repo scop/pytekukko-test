@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-"""
-Update Google Calendar with events for next collections.
+"""Update Google Calendar with events for next collections.
 
 To get the required service account file, enable the Google Calendar API
 in the Google Cloud console, create service account credentials with

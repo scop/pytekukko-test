@@ -7,8 +7,7 @@ from typing import Any, Optional, cast
 
 @dataclass
 class Service:
-    """
-    Service encapsulates information about parts of a customer relationship.
+    """Service encapsulates information about parts of a customer relationship.
 
     Examples of the kinds of services there are include collections of different kinds
     of waste containers, and yearly base prices for houses.
@@ -31,8 +30,7 @@ class Service:
 
     @property
     def next_collection(self) -> Optional[date]:
-        """
-        Get next collection date.
+        """Get next collection date.
 
         :returns: Next collection date, None if not applicable for the service.
         """
@@ -41,8 +39,7 @@ class Service:
 
 @dataclass
 class CustomerData:
-    """
-    CustomerData encapsulates customer information.
+    """CustomerData encapsulates customer information.
 
     Some frequently used service attributes are available as individual properties,
     and all data retrieved from the service is available in the ``raw_data`` dict.
@@ -63,8 +60,7 @@ class CustomerData:
 
 @dataclass
 class InvoiceHeader:
-    """
-    InvoiceHeader encapsulates basic information of an invoice.
+    """InvoiceHeader encapsulates basic information of an invoice.
 
     Some frequently used service attributes are available as individual properties,
     and all data retrieved from the service is available in the ``raw_data`` dict.
