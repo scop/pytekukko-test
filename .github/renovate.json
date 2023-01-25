@@ -36,7 +36,7 @@
     {
       "matchPackagePatterns": ["(^|/)ruff$"],
       "groupName": "ruff",
-      "versioning": "pep440"
+      "versioning": "semver"
     }
   ]
 }
