@@ -41,12 +41,12 @@ target-version = ["py39", "py310", "py311"] # TODO: add "py312" when supported
 [tool.ruff]
 select = ["ALL"]
 ignore = [
-  "ANN",
-  "D203", # black
-  "D213", # ping/pong with D212
-  #"E203", # black, uncomment when/if ruff starts to support
-  "E501", # black
-  "S101",
+  "ANN", # Maybe sometime
+  "D203", # Black, ping/pong with D211
+  "D213", # Ping/pong with D212
+  #"E203", # Black, uncomment when/if ruff starts to support
+  "E501", # Black
+  "S101", # Maybe sometime
   "TCH003", # Maybe sometime
 
 ]
