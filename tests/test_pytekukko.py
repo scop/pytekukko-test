@@ -30,7 +30,6 @@ POST_DATA_FILTERS = [
 
 def before_record_response(response: T) -> T:
     """Scrub unwanted data before recording response."""
-
     response["headers"].pop("Set-Cookie", None)
 
     # As of vcrpy 4.2.1, filter_query_parameters does not affect
@@ -56,7 +55,7 @@ def before_record_response(response: T) -> T:
 
 
 @pytest.fixture(scope="module", autouse=True)
-def load_dotenv() -> None:
+def _load_dotenv() -> None:
     """Load our environment."""
     _ = load_pytekukko_dotenv()
 
@@ -72,19 +71,20 @@ def vcr_config() -> dict[str, Any]:
     }
 
 
-@pytest.fixture(name="client", scope="function")
+@pytest.fixture(name="client")
 async def fixture_client() -> Pytekukko:
     """Get a client."""
     return Pytekukko(
         session=ClientSession(),
         customer_number=os.environ.get(
-            "PYTEKUKKO_CUSTOMER_NUMBER", FAKE_CUSTOMER_NUMBER
+            "PYTEKUKKO_CUSTOMER_NUMBER",
+            FAKE_CUSTOMER_NUMBER,
         ),
         password=os.environ.get("PYTEKUKKO_PASSWORD", FAKE_PASSWORD),
     )
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 async def test_login(client: Pytekukko) -> None:
     """Test login."""
     async with client.session:
@@ -92,7 +92,7 @@ async def test_login(client: Pytekukko) -> None:
     assert result
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 async def test_logout(client: Pytekukko) -> None:
     """Test logout."""
     # TODO(scop): would be better to test from a logged in session
@@ -101,18 +101,18 @@ async def test_logout(client: Pytekukko) -> None:
     # No exception counts as success here
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 async def test_get_collection_schedule(client: Pytekukko) -> None:
     """Test getting collection schedule."""
     async with client.session:
         dates = await client.get_collection_schedule(
-            what=int(os.environ.get("PYTEKUKKO_TEST_POS", FAKE_POS))
+            what=int(os.environ.get("PYTEKUKKO_TEST_POS", FAKE_POS)),
         )
     assert dates
     assert all(isinstance(date, datetime.date) for date in dates)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 async def test_get_invoice_headers(client: Pytekukko) -> None:
     """Test getting invoice headers."""
     async with client.session:

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-"""
-Update Google Calendar with events for next collections.
+"""Update Google Calendar with events for next collections.
 
 To get the required service account file, enable the Google Calendar API
 in the Google Cloud console, create service account credentials with
@@ -64,7 +63,7 @@ def update_google_calendar(  # pylint: disable=too-many-locals
     else:
         timezone = datetime.timezone.utc
     since = datetime.datetime.now(timezone).replace(hour=0) - datetime.timedelta(
-        hours=1
+        hours=1,
     )
 
     events = (
@@ -87,7 +86,8 @@ def update_google_calendar(  # pylint: disable=too-many-locals
             pos_events[pos] = event
         else:
             service.events().delete(  # pylint: disable=no-member
-                calendarId=calendar_id, eventId=event["id"]
+                calendarId=calendar_id,
+                eventId=event["id"],
             ).execute()
 
     for pos, pos_event_data in data.items():
@@ -107,7 +107,7 @@ def update_google_calendar(  # pylint: disable=too-many-locals
             "reminders": {"useDefault": False},
             "transparency": "transparent",
             "extendedProperties": {
-                "private": {"pytekukko-managed": "true", "pytekukko-pos": pos}
+                "private": {"pytekukko-managed": "true", "pytekukko-pos": pos},
             },
             "source": {
                 "url": "https://tilasto.jatekukko.fi/indexservice2.jsp",
@@ -127,7 +127,9 @@ def update_google_calendar(  # pylint: disable=too-many-locals
                 if event.get(key) != value:
                     action = "updated"
                     method = service.events().patch(  # pylint: disable=no-member
-                        calendarId=calendar_id, eventId=event["id"], body=event_data
+                        calendarId=calendar_id,
+                        eventId=event["id"],
+                        body=event_data,
                     )
                     break
             else:
@@ -136,7 +138,8 @@ def update_google_calendar(  # pylint: disable=too-many-locals
         else:
             action = "created"
             method = service.events().insert(  # pylint: disable=no-member
-                calendarId=calendar_id, body=event_data
+                calendarId=calendar_id,
+                body=event_data,
             )
         if method:
             event = method.execute()
@@ -145,7 +148,6 @@ def update_google_calendar(  # pylint: disable=too-many-locals
 
 async def run_example() -> None:
     """Run the example."""
-
     argparser = example_argparser(__doc__)
     argparser.add_argument(
         "--google-calendar-id",
@@ -156,19 +158,20 @@ async def run_example() -> None:
         "--google-service-account-file",
         type=str,
         **arg_environ_default(  # type: ignore[arg-type]
-            "PYTEKUKKO_GOOGLE_SERVICE_ACCOUNT_FILE", fallback="service_account.json"
+            "PYTEKUKKO_GOOGLE_SERVICE_ACCOUNT_FILE",
+            fallback="service_account.json",
         ),
     )
     args = argparser.parse_args()
 
     if not args.google_calendar_id:
-        print("Google calendar id required", file=sys.stderr)
+        print("Google calendar id required", file=sys.stderr)  # noqa: print-found
         sys.exit(2)
 
     client, cookie_jar, cookie_jar_path = example_client(args)
 
     credentials = service_account.Credentials.from_service_account_file(
-        args.google_service_account_file
+        args.google_service_account_file,
     )
 
     async with client.session:
@@ -195,7 +198,11 @@ async def run_example() -> None:
         )
 
     await asyncio.get_event_loop().run_in_executor(
-        None, update_google_calendar, credentials, args.google_calendar_id, data
+        None,
+        update_google_calendar,
+        credentials,
+        args.google_calendar_id,
+        data,
     )
 
 

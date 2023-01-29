@@ -1,9 +1,12 @@
 """Jätekukko Omakukko client."""
 
-from datetime import date, datetime
+from contextlib import suppress
+from datetime import date
+from datetime import datetime as dt
 from http import HTTPStatus
 from typing import Any, Union, cast
 from urllib.parse import urljoin
+from zoneinfo import ZoneInfo
 
 from aiohttp import ClientResponse, ClientResponseError, ClientSession
 
@@ -11,6 +14,8 @@ from .models import CustomerData, InvoiceHeader, Service
 
 __version__ = "0.12.1"
 DEFAULT_BASE_URL = "https://tilasto.jatekukko.fi/jatekukko/"
+
+_SERVICE_TZ = ZoneInfo("Europe/Helsinki")
 
 
 class Pytekukko:
@@ -46,15 +51,16 @@ class Pytekukko:
         params = {"customerNumbers[]": self.customer_number}
 
         response_data = await self._request_with_retry(
-            method="GET", url=url, params=params
+            method="GET",
+            url=url,
+            params=params,
         )
         assert isinstance(response_data, (list, tuple))
 
         return [Service(raw_data=_unmarshal(service)) for service in response_data]
 
     async def get_collection_schedule(self, what: Union[Service, int]) -> list[date]:
-        """
-        Get collection schedule for a service.
+        """Get collection schedule for a service.
 
         :param what: the service or a "pos" value of one to get schedule for
         """
@@ -63,7 +69,9 @@ class Pytekukko:
         params = {"customerNumber": self.customer_number, "pos": pos}
 
         response_data = await self._request_with_retry(
-            method="GET", url=url, params=params
+            method="GET",
+            url=url,
+            params=params,
         )
 
         return cast(list[date], _unmarshal(response_data))
@@ -76,7 +84,9 @@ class Pytekukko:
         }
 
         response_data = await self._request_with_retry(
-            method="GET", url=url, params=params
+            method="GET",
+            url=url,
+            params=params,
         )
         assert isinstance(response_data, (list, tuple))
 
@@ -93,7 +103,11 @@ class Pytekukko:
         data = {"j_username": self.customer_number, "j_password": self.password}
 
         async with self.session.post(
-            url, headers=headers, params=params, data=data, raise_for_status=True
+            url,
+            headers=headers,
+            params=params,
+            data=data,
+            raise_for_status=True,
         ) as response:
             # TODO(scop): Check we got {"response":"OK"}?
             return cast(dict[str, str], await response.json())
@@ -106,8 +120,7 @@ class Pytekukko:
             await _drain(response)
 
     async def _request_with_retry(self, **request_kwargs: Any) -> Any:
-        """
-        Do a request, with automatic login and retry if session is logged out.
+        """Do a request, with automatic login and retry if session is logged out.
 
         :param raise_for_first_status: whether first unsuccessful status should raise;
             False allows for handling special cases that give errors instead of
@@ -116,7 +129,8 @@ class Pytekukko:
         """
         try:
             async with self.session.request(
-                **request_kwargs, raise_for_status=True
+                **request_kwargs,
+                raise_for_status=True,
             ) as response:
                 if response.history and response.url.path.endswith("/login.do"):
                     await _drain(response)
@@ -131,14 +145,14 @@ class Pytekukko:
 
         _ = await self.login()
         async with self.session.request(
-            **request_kwargs, raise_for_status=True
+            **request_kwargs,
+            raise_for_status=True,
         ) as response:
             return await response.json()
 
 
 def _unmarshal(data: Any) -> Any:
-    """
-    Unmarshal items in parsed JSON to more specific objects.
+    """Unmarshal items in parsed JSON to more specific objects.
 
     :param data: parsed JSON data
     :return: unmarshalled data
@@ -151,18 +165,17 @@ def _unmarshal(data: Any) -> Any:
             data[i] = _unmarshal(value)
     elif isinstance(data, str):
         try:
-            data = datetime.strptime(data, "%Y-%m-%d").date()
+            parsed = dt.strptime(data, "%Y-%m-%d").replace(tzinfo=_SERVICE_TZ)
+            data = parsed.date()
         except ValueError:
-            try:
-                data = datetime.strptime(data, "%H:%M").time()
-            except ValueError:
-                pass
+            with suppress(ValueError):
+                parsed = dt.strptime(data, "%H:%M").replace(tzinfo=_SERVICE_TZ)
+                data = parsed.time()
     return data
 
 
 async def _drain(response: ClientResponse) -> None:
-    """
-    Consume and discard response.
+    """Consume and discard response.
 
     Useful for keeping the connection alive without caring about response content.
     """

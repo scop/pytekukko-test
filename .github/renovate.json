@@ -34,19 +34,9 @@
       "versioning": "pep440"
     },
     {
-      "matchPackagePatterns": ["(^|/)flake8$"],
-      "groupName": "flake8",
-      "versioning": "pep440"
-    },
-    {
-      "matchPackagePatterns": ["(^|/)isort$"],
-      "groupName": "isort",
-      "versioning": "pep440"
-    },
-    {
-      "matchPackagePatterns": ["(^|/)pyupgrade$"],
-      "groupName": "pyupgrade",
-      "versioning": "pep440"
+      "matchPackagePatterns": ["(^|/)ruff$"],
+      "groupName": "ruff",
+      "versioning": "semver"
     }
   ]
 }
