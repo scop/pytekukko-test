@@ -34,6 +34,8 @@ repos:
     rev: v0.18.0
     hooks:
       - id: gitlint
+      - id: gitlint-ci
+        args: [--ignore-stdin, --commits, origin/main..]
 
   - repo: https://github.com/jackdewinter/pymarkdown
     rev: v0.9.8
