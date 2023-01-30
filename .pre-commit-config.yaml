@@ -34,8 +34,6 @@ repos:
     rev: v0.18.0
     hooks:
       - id: gitlint
-        args: [--msg-filename] # no need for --staged
-        stages: [commit-msg]
 
   - repo: https://github.com/jackdewinter/pymarkdown
     rev: v0.9.8
