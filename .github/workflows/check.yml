@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  pre-commit:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
           python3 -m pip install -Ur \
             requirements-dev.txt pre-commit~=2.9 gitlint==0.18.0
           pre-commit install-hooks
-      - name: Run pre-commit
+      - name: Run linters
         run: |
           set -euxo pipefail
           source venv/bin/activate
