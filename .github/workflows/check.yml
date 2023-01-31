@@ -7,10 +7,13 @@ on:
       - main
 
 jobs:
-  pre-commit:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
           python-version: ">=3.9"
@@ -24,7 +27,8 @@ jobs:
             pip+venv
             ${{ steps.setup-python.outputs.python-version }}
             ${{ hashFiles(
-                'pyproject.toml', 'requirements-dev.txt', 'requirements-test.txt'
+                'pyproject.toml', 'requirements-dev.txt',
+                'requirements-test.txt', '.github/workflows/check.yml'
             ) }}
       - uses: actions/cache@v3
         with:
@@ -37,50 +41,19 @@ jobs:
           set -euxo pipefail
           python3 -m venv venv
           source venv/bin/activate
-          python3 -m pip install -Ur requirements-dev.txt pre-commit~=2.9
+          python3 -m pip install -Ur \
+            requirements-dev.txt pre-commit~=2.9 gitlint==0.18.0
           pre-commit install-hooks
-      - name: Run pre-commit
+      - name: Run linters
         run: |
           set -euxo pipefail
           source venv/bin/activate
-
-          # Commit message checks
-
-          tmpdir=$(mktemp -d)
-          trap "rm -r '$tmpdir'" EXIT
-          commits_json=$tmpdir/commits.json
-          commit_txt=$tmpdir/message.txt
-
-          # For push, commits are available directly in github.event.commits.
-          # For pull_request they're not: grab them from API, transform fields
-          # we want to a similar structure as pushes are.
-          # Note: API does not work for private projects, gives 404.
-          if [[ "${{ github.event.commits }}" ]]; then
-            cat <<\EOF >"$commits_json"
-            ${{ toJSON(github.event.commits) }}
-          EOF
-          else
-            curl -fSsL ${{ github.event.pull_request.commits_url }} | \
-              jq '[.[] | {id: .sha, message: .commit.message}]' >"$commits_json"
-          fi
-
           rc=0
-          for id in $(jq --raw-output '.[].id' <"$commits_json"); do
-            jq --raw-output ".[] | select(.id==\"$id\") | .message" \
-              <"$commits_json" >"$commit_txt"
-            echo "Commit $id:"
-            pre-commit run gitlint \
-              --color always \
-              --hook-stage commit-msg \
-              --commit-msg-filename "$commit_txt" \
-              || rc=1
-          done
-
-          # Other pre-commit checks
-
-          pre-commit run --color always --all-files --show-diff-on-failure \
-              || rc=1
-
+          gitlint --ignore-stdin \
+            --commits "origin/${GITHUB_BASE_REF:-main}..HEAD" \
+            || rc=1
+          pre-commit run --all-files --color always --show-diff-on-failure \
+            || rc1=1
           exit $rc
 
   test:
