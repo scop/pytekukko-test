@@ -35,9 +35,6 @@ pytekukko-update-google-calendar = "pytekukko.examples.update_google_calendar:ma
 Homepage = "https://github.com/scop/pytekukko"
 Changelog = "https://github.com/scop/pytekukko/blob/main/CHANGELOG.md"
 
-[tool.black]
-target-version = ["py39", "py310", "py311"] # TODO: add "py312" when supported
-
 [tool.ruff]
 select = ["ALL"]
 ignore = [
