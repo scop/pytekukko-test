@@ -45,8 +45,7 @@ jobs:
           source venv/bin/activate
           set -x
           rc=0
-          gitlint --ignore-stdin \
-            --commits "origin/${GITHUB_BASE_REF:-main}..HEAD" \
+          gitlint --commits "origin/${GITHUB_BASE_REF:-main}..HEAD" \
             || rc=1
           pre-commit run --all-files --color always --show-diff-on-failure \
             || rc1=1
