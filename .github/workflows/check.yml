@@ -14,10 +14,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ">=3.9"
-        id: setup-python
       - uses: actions/cache@v3
         with:
           path: |
@@ -25,10 +21,9 @@ jobs:
             venv
           key: >-
             pip+venv
-            ${{ steps.setup-python.outputs.python-version }}
             ${{ hashFiles(
                 'pyproject.toml', 'requirements-dev.txt',
-                'requirements-test.txt', '.github/workflows/check.yml'
+                'requirements-test.txt', '.github/requirements.txt'
             ) }}
       - uses: actions/cache@v3
         with:
@@ -42,8 +37,7 @@ jobs:
           python3 -m venv venv
           source venv/bin/activate
           set -x
-          python3 -m pip install -Ur \
-            requirements-dev.txt pre-commit~=2.9 gitlint==0.18.0
+          python3 -m pip install -Ur .github/requirements.txt
           pre-commit install-hooks
       - name: Run linters
         run: |
@@ -51,8 +45,7 @@ jobs:
           source venv/bin/activate
           set -x
           rc=0
-          gitlint --ignore-stdin \
-            --commits "origin/${GITHUB_BASE_REF:-main}..HEAD" \
+          gitlint --commits "origin/${GITHUB_BASE_REF:-main}..HEAD" \
             || rc=1
           pre-commit run --all-files --color always --show-diff-on-failure \
             || rc1=1
