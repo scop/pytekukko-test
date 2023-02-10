@@ -14,10 +14,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ">=3.9"
-        id: setup-python
       - uses: actions/cache@v3
         with:
           path: |
@@ -25,7 +21,6 @@ jobs:
             venv
           key: >-
             pip+venv
-            ${{ steps.setup-python.outputs.python-version }}
             ${{ hashFiles(
                 'pyproject.toml', 'requirements-dev.txt',
                 'requirements-test.txt', '.github/workflows/check.yml'
