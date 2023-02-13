@@ -1,4 +1,3 @@
-# noqa: INP001
 """nox config for pytekukko."""
 
 from typing import cast
