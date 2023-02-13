@@ -32,12 +32,7 @@ jobs:
           source venv/bin/activate
           set -x
           python3 -m pip install -Ur .github/requirements.txt
-      - name: Run gitlint
-        run: |
-          set -euo pipefail
-          source venv/bin/activate
-          set -x
-          gitlint --commits "origin/${GITHUB_BASE_REF:-main}..HEAD"
+      - run: venv/bin/gitlint --commits "origin/${GITHUB_BASE_REF:-main}..HEAD"
       - uses: pre-commit/action@v3.0.0
 
   test:
