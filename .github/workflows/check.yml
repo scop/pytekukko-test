@@ -28,6 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           set -euo pipefail
+          # venv due to mypy through pre-commit, venv-run
           python3 -m venv venv
           source venv/bin/activate
           set -x
