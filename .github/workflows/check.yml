@@ -25,12 +25,6 @@ jobs:
                 'pyproject.toml', 'requirements-dev.txt',
                 'requirements-test.txt', '.github/requirements.txt'
             ) }}
-      - uses: actions/cache@v3
-        with:
-          path: ~/.cache/pre-commit
-          key: >-
-            pre-commit
-            ${{ hashFiles('.pre-commit-config.yaml') }}
       - name: Install dependencies
         run: |
           set -euo pipefail
@@ -38,18 +32,13 @@ jobs:
           source venv/bin/activate
           set -x
           python3 -m pip install -Ur .github/requirements.txt
-          pre-commit install-hooks
-      - name: Run linters
+      - name: Run gitlint
         run: |
           set -euo pipefail
           source venv/bin/activate
           set -x
-          rc=0
-          gitlint --commits "origin/${GITHUB_BASE_REF:-main}..HEAD" \
-            || rc=1
-          pre-commit run --all-files --color always --show-diff-on-failure \
-            || rc=1
-          exit $rc
+          gitlint --commits "origin/${GITHUB_BASE_REF:-main}..HEAD"
+      - uses: pre-commit/action@v3.0.0
 
   test:
     runs-on: ubuntu-latest
