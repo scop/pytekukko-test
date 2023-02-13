@@ -32,7 +32,8 @@ jobs:
           source venv/bin/activate
           set -x
           python3 -m pip install -Ur .github/requirements.txt
-      - run: venv/bin/gitlint --commits "origin/${GITHUB_BASE_REF:-main}..HEAD"
+      - run: venv/bin/gitlint --commits "origin/$GITHUB_BASE_REF..HEAD"
+        if: github.event_name == 'pull_request'
       - uses: pre-commit/action@v3.0.0
 
   test:
