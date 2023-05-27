@@ -113,7 +113,7 @@ class Pytekukko:
             data=data,
             raise_for_status=True,
         ) as response:
-            # TODO(scop): Check we got {"response":"OK"}?
+            # NOTE(scop): could check that we got {"response":"OK"}
             return cast(dict[str, str], await response.json())
 
     async def logout(self) -> None:
