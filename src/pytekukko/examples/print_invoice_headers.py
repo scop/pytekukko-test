@@ -14,16 +14,15 @@ async def run_example() -> None:
         example_argparser(__doc__).parse_args(),
     )
 
-    data = []
     async with client.session:
-        for invoice_header in await client.get_invoice_headers():
-            data.append(
-                {
-                    "name": invoice_header.name,
-                    "due_date": invoice_header.due_date.isoformat(),
-                    "total": invoice_header.total,
-                },
-            )
+        data = [
+            {
+                "name": invoice_header.name,
+                "due_date": invoice_header.due_date.isoformat(),
+                "total": invoice_header.total,
+            }
+            for invoice_header in await client.get_invoice_headers()
+        ]
         if not cookie_jar_path:
             await client.logout()
 

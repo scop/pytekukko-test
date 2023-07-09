@@ -19,7 +19,7 @@ async def run_example() -> None:
         services = await client.get_services()
         for service in services:
             if schedule := await client.get_collection_schedule(service):
-                data.append(
+                data.append(  # noqa: PERF401 # negligible, hairy with list comprehension
                     {
                         "name": service.name,
                         "collection_schedule": [x.isoformat() for x in schedule],
