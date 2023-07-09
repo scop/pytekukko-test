@@ -14,16 +14,15 @@ async def run_example() -> None:
         example_argparser(__doc__).parse_args(),
     )
 
-    data = []
     async with client.session:
-        services = await client.get_services()
-        for service in (x for x in services if x.next_collection):
-            data.append(
-                {
-                    "name": service.name,
-                    "collection_date": service.next_collection.isoformat(),  # type: ignore[union-attr]
-                },
-            )
+        data = [
+            {
+                "name": service.name,
+                "collection_date": service.next_collection.isoformat(),
+            }
+            for service in await client.get_services()
+            if service.next_collection
+        ]
         if not cookie_jar_path:
             await client.logout()
 

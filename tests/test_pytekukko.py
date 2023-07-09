@@ -36,14 +36,15 @@ def before_record_response(response: T) -> T:
     # parameters in response["url"], so address them here.
     # Refs https://github.com/kevin1024/vcrpy/issues/517
     url_parts = urlparse(response["url"])
-    new_query_parts = []
+    new_query_parts: list[str] = []
     query_params = parse_qs(url_parts.query)
     for key, values in query_params.items():
         for filter_key, filter_value in QUERY_PARAMETER_FILTERS:
             if key == filter_key:
                 values = [filter_value]  # noqa: PLW2901
-        for value in values:
-            new_query_parts.append(f"{quote_plus(key)}={quote_plus(value)}")
+        new_query_parts.extend(
+            f"{quote_plus(key)}={quote_plus(value)}" for value in values
+        )
     new_url_parts = list(url_parts)
     new_url_parts[4] = "&".join(new_query_parts)
     response["url"] = urlunparse(new_url_parts)
