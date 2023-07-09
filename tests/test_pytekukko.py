@@ -32,7 +32,7 @@ def before_record_response(response: T) -> T:
     """Scrub unwanted data before recording response."""
     response["headers"].pop("Set-Cookie", None)
 
-    # As of vcrpy 4.2.1, filter_query_parameters does not affect
+    # As of vcrpy 5.0.0, filter_query_parameters does not affect
     # parameters in response["url"], so address them here.
     # Refs https://github.com/kevin1024/vcrpy/issues/517
     url_parts = urlparse(response["url"])
