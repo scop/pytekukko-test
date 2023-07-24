@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from datetime import date
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 
 @dataclass
@@ -29,7 +29,7 @@ class Service:
         return cast(int, self.raw_data["ASTPos"])
 
     @property
-    def next_collection(self) -> Optional[date]:
+    def next_collection(self) -> date | None:
         """Get next collection date.
 
         :returns: Next collection date, None if not applicable for the service.
