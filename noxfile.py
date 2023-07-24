@@ -7,7 +7,7 @@ import nox
 nox.options.error_on_external_run = True
 
 
-@nox.session(python=[f"{py}3.{x}" for py in ("", "pypy") for x in range(9, 13)])
+@nox.session(python=[f"{py}3.{x}" for py in ("", "pypy") for x in range(10, 13)])
 def test(session: nox.Session) -> None:
     """Run tests."""
     if int(cast(str, session.python).rpartition(".")[2]) >= 12:  # noqa: PLR2004
