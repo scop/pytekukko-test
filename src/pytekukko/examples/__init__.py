@@ -4,7 +4,6 @@ import os
 import sys
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
-from typing import Optional
 
 from aiohttp import ClientSession, CookieJar
 from dotenv import find_dotenv, load_dotenv
@@ -16,8 +15,8 @@ def arg_environ_default(
     key: str,
     *,
     optional: bool = False,
-    fallback: Optional[str] = None,
-) -> dict[str, Optional[str]]:
+    fallback: str | None = None,
+) -> dict[str, str | None]:
     """Get kwargs for environment backed argument addition."""
     help_text = f"default: ${key} from environment"
     if optional:
@@ -70,7 +69,7 @@ def example_argparser(description: str) -> ArgumentParser:
     return argparser
 
 
-def example_client(args: Namespace) -> tuple[Pytekukko, CookieJar, Optional[Path]]:
+def example_client(args: Namespace) -> tuple[Pytekukko, CookieJar, Path | None]:
     """Set up example client."""
     if not args.customer_number:
         print("customer number required", file=sys.stderr)  # noqa: T201

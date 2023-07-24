@@ -4,7 +4,7 @@ from contextlib import suppress
 from datetime import date
 from datetime import datetime as dt
 from http import HTTPStatus
-from typing import Any, Union, cast
+from typing import Any, cast
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
@@ -57,12 +57,12 @@ class Pytekukko:
             url=url,
             params=params,
         )
-        if not isinstance(response_data, (list, tuple)):
+        if not isinstance(response_data, list | tuple):
             raise UnexpectedResponseStructureError(response_data)
 
         return [Service(raw_data=_unmarshal(service)) for service in response_data]
 
-    async def get_collection_schedule(self, what: Union[Service, int]) -> list[date]:
+    async def get_collection_schedule(self, what: Service | int) -> list[date]:
         """Get collection schedule for a service.
 
         :param what: the service or a "pos" value of one to get schedule for
@@ -91,7 +91,7 @@ class Pytekukko:
             url=url,
             params=params,
         )
-        if not isinstance(response_data, (list, tuple)):
+        if not isinstance(response_data, list | tuple):
             raise UnexpectedResponseStructureError(response_data)
 
         return [
