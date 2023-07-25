@@ -23,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: release_please
     if: needs.release_please.outputs.release_created
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v3
         with:
@@ -36,6 +38,4 @@ jobs:
           python3 -m pip install -U build
           python3 -m build
           ls dist
-      - uses: pypa/gh-action-pypi-publish@v1.6.4
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+      - uses: pypa/gh-action-pypi-publish@v1.8.8
