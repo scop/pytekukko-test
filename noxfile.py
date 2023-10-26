@@ -17,14 +17,36 @@ def test(session: nox.Session) -> None:
         )
     session.install(".[examples]", "-r", "requirements/test-requirements.txt")
 
-    prefix = "python3 -X dev -bb"
-    session.run(*f"{prefix} -m pytest".split() + session.posargs)
+    known_deprecations = [
+        "-W",  # https://github.com/aio-libs/aiohttp/pull/7302, included in aiohttp >= 3.9
+        "default:datetime.datetime.utcfromtimestamp:DeprecationWarning:aiohttp.cookiejar",
+    ]
 
-    prefix += " -W error"
-    # https://github.com/aio-libs/aiohttp/pull/7302, in >= 3.9
-    prefix += " -W default:datetime.datetime.utcfromtimestamp:DeprecationWarning:aiohttp.cookiejar"
-    prefix += " -m pytekukko.examples"
-    session.run(*f"{prefix}.print_collection_schedules --help".split(), silent=True)
-    session.run(*f"{prefix}.print_invoice_headers --help".split(), silent=True)
-    session.run(*f"{prefix}.print_next_collections --help".split(), silent=True)
-    session.run(*f"{prefix}.update_google_calendar --help".split(), silent=True)
+    cmd = ["python3", "-X", "dev", "-bb"]
+    session.run(*cmd, "-m", "pytest", *known_deprecations, *session.posargs)
+
+    cmd += ["-W", "error", *known_deprecations, "-m"]
+    session.run(
+        *cmd,
+        "pytekukko.examples.print_collection_schedules",
+        "--help",
+        silent=True,
+    )
+    session.run(
+        *cmd,
+        "pytekukko.examples.print_invoice_headers",
+        "--help",
+        silent=True,
+    )
+    session.run(
+        *cmd,
+        "pytekukko.examples.print_next_collections",
+        "--help",
+        silent=True,
+    )
+    session.run(
+        *cmd,
+        "pytekukko.examples.update_google_calendar",
+        "--help",
+        silent=True,
+    )
