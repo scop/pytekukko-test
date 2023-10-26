@@ -21,7 +21,7 @@ def test(session: nox.Session) -> None:
     session.run(*f"{prefix} -m pytest".split() + session.posargs)
 
     prefix += " -W error"
-    # https://github.com/aio-libs/aiohttp/pull/7302
+    # https://github.com/aio-libs/aiohttp/pull/7302, in >= 3.9
     prefix += " -W default:datetime.datetime.utcfromtimestamp:DeprecationWarning:aiohttp.cookiejar"
     prefix += " -m pytekukko.examples"
     session.run(*f"{prefix}.print_collection_schedules --help".split(), silent=True)
