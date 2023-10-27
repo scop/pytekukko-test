@@ -20,6 +20,8 @@ def test(session: nox.Session) -> None:
     known_deprecations = [
         "-W",  # https://github.com/aio-libs/aiohttp/pull/7302, included in aiohttp >= 3.9
         "default:datetime.datetime.utcfromtimestamp:DeprecationWarning:aiohttp.cookiejar",
+        "-W",  # aiohttp 3.8.6 in -X dev mode
+        "default:Setting custom ClientSession._resolve_charset attribute is discouraged:DeprecationWarning:aiohttp.client",
     ]
 
     cmd = ["python3", "-X", "dev", "-bb"]
