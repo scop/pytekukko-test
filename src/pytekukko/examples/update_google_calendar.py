@@ -18,8 +18,8 @@ import zoneinfo
 from collections.abc import Mapping
 from typing import Any, NamedTuple, cast
 
-from google.oauth2 import service_account  # type: ignore[import]
-from googleapiclient.discovery import build  # type: ignore[import]
+from google.oauth2 import service_account  # type: ignore[import-untyped]
+from googleapiclient.discovery import build  # type: ignore[import-untyped]
 
 from pytekukko.examples import arg_environ_default, example_argparser, example_client
 
