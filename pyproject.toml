@@ -58,7 +58,6 @@ ignore = [
   "COM819",
   "ISC001",
   "ISC002",
-  "E501",
 ]
 fix = true
 unfixable = ["T20"]
