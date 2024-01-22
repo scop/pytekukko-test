@@ -3,7 +3,6 @@
 import datetime
 import os
 from typing import Any, TypeVar
-from urllib.parse import parse_qs, quote_plus, urlparse, urlunparse
 
 import pytest
 from aiohttp import ClientSession
@@ -32,24 +31,9 @@ def before_record_response(response: T) -> T:
     """Scrub unwanted data before recording response."""
     response["headers"].pop("Set-Cookie", None)
 
-    # As of vcrpy 5.0.0, filter_query_parameters does not affect
-    # parameters in response["url"], so address them here.
-    # Refs https://github.com/kevin1024/vcrpy/issues/517
-    url_parts = urlparse(response["url"])
-    new_query_parts: list[str] = []
-    query_params = parse_qs(url_parts.query)
-    for key, values in query_params.items():
-        for filter_key, filter_value in QUERY_PARAMETER_FILTERS:
-            if key == filter_key:
-                values = [filter_value]  # noqa: PLW2901
-        new_query_parts.extend(
-            f"{quote_plus(key)}={quote_plus(value)}" for value in values
-        )
-    new_url_parts = list(url_parts)
-    new_url_parts[4] = "&".join(new_query_parts)
-    response["url"] = urlunparse(new_url_parts)
-
-    if response["url"].endswith("/login.do"):
+    if response["body"] != {} and any(
+        "html" in h for h in response["headers"].get("Content-Type", [])
+    ):
         response["body"]["string"] = b"redacted"  # unused, bloats cassettes
 
     return response
