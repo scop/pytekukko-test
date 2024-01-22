@@ -9,7 +9,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.8.1
+      - Python/3.12 aiohttp/3.9.0
     method: GET
     uri: https://tilasto.jatekukko.fi/jatekukko/secure/get_invoice_headers_for_customer.do?customerId=00-0000000-00
   response:
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Wed, 31 Aug 2022 19:15:11 GMT
+      - Mon, 22 Jan 2024 21:06:08 GMT
       Location:
       - https://tilasto.jatekukko.fi/jatekukko/login.do
       Server:
@@ -34,11 +34,10 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.5 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 302
       message: Found
-    url: https://tilasto.jatekukko.fi/jatekukko/secure/get_invoice_headers_for_customer.do?customerId=00-0000000-00
 - request:
     body: null
     headers:
@@ -49,7 +48,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.8.1
+      - Python/3.12 aiohttp/3.9.0
     method: GET
     uri: https://tilasto.jatekukko.fi/jatekukko/login.do
   response:
@@ -67,7 +66,7 @@ interactions:
       Content-Type:
       - text/html;charset=utf-8
       Date:
-      - Wed, 31 Aug 2022 19:15:11 GMT
+      - Mon, 22 Jan 2024 21:06:08 GMT
       Server:
       - nginx
       Strict-Transport-Security:
@@ -77,11 +76,10 @@ interactions:
       X-Frame-Options:
       - DENY
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.5 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 200
       message: OK
-    url: https://tilasto.jatekukko.fi/jatekukko/login.do
 - request:
     body:
       j_password: secret
@@ -98,7 +96,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.8.1
+      - Python/3.12 aiohttp/3.9.0
       X-Requested-With:
       - XMLHttpRequest
     method: POST
@@ -111,7 +109,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Wed, 31 Aug 2022 19:15:11 GMT
+      - Mon, 22 Jan 2024 21:06:08 GMT
       Location:
       - https://tilasto.jatekukko.fi/jatekukko/secure/welcome.do
       Server:
@@ -121,11 +119,10 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.5 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 303
       message: See Other
-    url: https://tilasto.jatekukko.fi/jatekukko/j_acegi_security_check?target=2
 - request:
     body: null
     headers:
@@ -136,7 +133,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.8.1
+      - Python/3.12 aiohttp/3.9.0
       X-Requested-With:
       - XMLHttpRequest
     method: GET
@@ -151,7 +148,7 @@ interactions:
       Content-Security-Policy:
       - frame-ancestors 'none'
       Date:
-      - Wed, 31 Aug 2022 19:15:11 GMT
+      - Mon, 22 Jan 2024 21:06:09 GMT
       Location:
       - https://tilasto.jatekukko.fi/jatekukko/secure/well.do
       Server:
@@ -161,11 +158,10 @@ interactions:
       X-Frame-Options:
       - DENY
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.5 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 303
       message: See Other
-    url: https://tilasto.jatekukko.fi/jatekukko/secure/welcome.do
 - request:
     body: null
     headers:
@@ -176,7 +172,7 @@ interactions:
       Host:
       - tilasto.jatekukko.fi
       User-Agent:
-      - Python/3.8 aiohttp/3.8.1
+      - Python/3.12 aiohttp/3.9.0
       X-Requested-With:
       - XMLHttpRequest
     method: GET
@@ -219,7 +215,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Wed, 31 Aug 2022 19:15:11 GMT
+      - Mon, 22 Jan 2024 21:06:09 GMT
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Pragma:
@@ -231,11 +227,10 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.5 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 200
       message: OK
-    url: https://tilasto.jatekukko.fi/jatekukko/secure/well.do
 - request:
     body: null
     headers: {}
@@ -243,9 +238,9 @@ interactions:
     uri: https://tilasto.jatekukko.fi/jatekukko/secure/get_invoice_headers_for_customer.do?customerId=00-0000000-00
   response:
     body:
-      string: '[{"id":"3","parentId":null,"name":"LASKU 3","time":"2020-12-01","amount":null,"unit":null,"unitPrice":null,"vatlessSumPrice":null,"vatAmount":null,"total":32.34,"hasChildren":false,"linkId":null,"benchmark":null,"invoiceNumber":3,"referenceNumber":"33","comment":null,"orderNumber":null,"dueDate":"2020-12-31","delayInterestRate":null,"paymentRule":null,"link":"/secure/download.do?invoice=3","accomplishedPayments":0.0},{"id":"2","parentId":null,"name":"LASKU
-        2","time":"2020-06-01","amount":null,"unit":null,"unitPrice":null,"vatlessSumPrice":null,"vatAmount":null,"total":22.34,"hasChildren":false,"linkId":null,"benchmark":null,"invoiceNumber":2,"referenceNumber":"22","comment":null,"orderNumber":null,"dueDate":"2020-06-30","delayInterestRate":null,"paymentRule":null,"link":"/secure/download.do?invoice=2","accomplishedPayments":0.0},{"id":"1","parentId":null,"name":"LASKU
-        1","time":"2019-12-01","amount":null,"unit":null,"unitPrice":null,"vatlessSumPrice":null,"vatAmount":null,"total":12.34,"hasChildren":false,"linkId":null,"benchmark":null,"invoiceNumber":1,"referenceNumber":"11","comment":null,"orderNumber":null,"dueDate":"2019-12-31","delayInterestRate":null,"paymentRule":null,"link":"/secure/download.do?invoice=1","accomplishedPayments":0.0}]'
+      string: '[{"id":"3","parentId":null,"name":"LASKU 3","time":"2020-12-01","amount":null,"unit":null,"unitPrice":null,"vatlessSumPrice":null,"vatAmount":null,"total":32.34,"hasChildren":false,"linkId":null,"benchmark":null,"invoiceNumber":3,"referenceNumber":"33","comment":null,"orderNumber":null,"dueDate":"2020-12-31","delayInterestRate":null,"paymentRule":null,"link":"/secure/download.do?invoice=3","invoicingStatus":"0","accomplishedPayments":0.0},{"id":"2","parentId":null,"name":"LASKU
+        2","time":"2020-06-01","amount":null,"unit":null,"unitPrice":null,"vatlessSumPrice":null,"vatAmount":null,"total":22.34,"hasChildren":false,"linkId":null,"benchmark":null,"invoiceNumber":2,"referenceNumber":"22","comment":null,"orderNumber":null,"dueDate":"2020-06-30","delayInterestRate":null,"paymentRule":null,"link":"/secure/download.do?invoice=2","invoicingStatus":"A","accomplishedPayments":0.0},{"id":"1","parentId":null,"name":"LASKU
+        1","time":"2019-12-01","amount":null,"unit":null,"unitPrice":null,"vatlessSumPrice":null,"vatAmount":null,"total":12.34,"hasChildren":false,"linkId":null,"benchmark":null,"invoiceNumber":1,"referenceNumber":"11","comment":null,"orderNumber":null,"dueDate":"2019-12-31","delayInterestRate":null,"paymentRule":null,"link":"/secure/download.do?invoice=1","invoicingStatus":"A","accomplishedPayments":0.0}]'
     headers:
       Cache-Control:
       - no-cache, no-store, must-revalidate
@@ -254,7 +249,7 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Wed, 31 Aug 2022 19:15:11 GMT
+      - Mon, 22 Jan 2024 21:06:09 GMT
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Pragma:
@@ -268,9 +263,8 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Powered-By:
-      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.2 #badassfish Java/Eclipse OpenJ9/1.8)'
+      - 'Servlet/4.0 JSP/2.3 (Payara Server  5.2022.5 #badassfish Java/Eclipse OpenJ9/1.8)'
     status:
       code: 200
       message: OK
-    url: https://tilasto.jatekukko.fi/jatekukko/secure/get_invoice_headers_for_customer.do?customerId=00-0000000-00
 version: 1
