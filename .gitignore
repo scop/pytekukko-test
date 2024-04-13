@@ -1,10 +1,10 @@
 *.egg-info/
 *~
 /.env
+/.mise.*.local.toml
+/.mise.local.toml
 /.nox/
 /.python-version
-/.rtx.*.local.toml
-/.rtx.local.toml
 /build/
 /dist/
 /service_account.json
