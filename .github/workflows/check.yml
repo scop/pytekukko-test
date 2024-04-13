@@ -60,7 +60,7 @@ jobs:
               'pyproject.toml'
             ) }}
           restore-keys: test-${{ runner.os }}-${{ matrix.python-version }}-
-      - uses: excitedleigh/setup-nox@v2.1.0
+      - uses: fjwillemsen/setup-nox2@v3.0.0
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
