@@ -69,7 +69,7 @@ async def fixture_client() -> Pytekukko:
     )
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 async def test_login_logout(client: Pytekukko) -> None:
     """Test login followed by logout."""
     async with client.session:
@@ -77,14 +77,14 @@ async def test_login_logout(client: Pytekukko) -> None:
         await client.logout()  # No exception counts as success here
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 async def test_logout(client: Pytekukko) -> None:
     """Test bare logout."""
     async with client.session:
         await client.logout()  # No exception counts as success here
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 async def test_get_collection_schedule(client: Pytekukko) -> None:
     """Test getting collection schedule."""
     async with client.session:
@@ -95,7 +95,7 @@ async def test_get_collection_schedule(client: Pytekukko) -> None:
     assert all(isinstance(date, datetime.date) for date in dates)
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 async def test_get_invoice_headers(client: Pytekukko) -> None:
     """Test getting invoice headers."""
     async with client.session:
