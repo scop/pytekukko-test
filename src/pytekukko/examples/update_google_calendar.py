@@ -182,7 +182,7 @@ async def run_example() -> None:
     for service in (x for x in services if x.next_collection):
         data[str(service.pos)] = CalendarData(
             name=service.name,
-            date=cast(datetime.date, service.next_collection),
+            date=cast("datetime.date", service.next_collection),
             location=", ".join(
                 x
                 for x in (

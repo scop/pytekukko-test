@@ -77,7 +77,7 @@ class Pytekukko:
             params=params,
         )
 
-        return cast(list[date], _unmarshal(response_data))
+        return cast("list[date]", _unmarshal(response_data))
 
     async def get_invoice_headers(self) -> list[InvoiceHeader]:
         """Get headers of available invoices."""
@@ -114,7 +114,7 @@ class Pytekukko:
             raise_for_status=True,
         ) as response:
             # NOTE(scop): could check that we got {"response":"OK"}
-            return cast(dict[str, str], await response.json())
+            return cast("dict[str, str]", await response.json())
 
     async def logout(self) -> None:
         """Log out the current session."""

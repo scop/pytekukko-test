@@ -21,12 +21,12 @@ class Service:
     @property
     def name(self) -> str:
         """Get service name."""
-        return cast(str, self.raw_data["ASTNimi"])
+        return cast("str", self.raw_data["ASTNimi"])
 
     @property
     def pos(self) -> int:
         """Get "pos" value."""
-        return cast(int, self.raw_data["ASTPos"])
+        return cast("int", self.raw_data["ASTPos"])
 
     @property
     def next_collection(self) -> date | None:
@@ -50,12 +50,12 @@ class CustomerData:
     @property
     def customer_number(self) -> str:
         """Get customer number."""
-        return cast(str, self.raw_data["asiakasnro"])
+        return cast("str", self.raw_data["asiakasnro"])
 
     @property
     def name(self) -> str:
         """Get customer name."""
-        return cast(str, self.raw_data["nimi"])
+        return cast("str", self.raw_data["nimi"])
 
 
 @dataclass
@@ -71,14 +71,14 @@ class InvoiceHeader:
     @property
     def name(self) -> str:
         """Get customer number."""
-        return cast(str, self.raw_data["name"])
+        return cast("str", self.raw_data["name"])
 
     @property
     def due_date(self) -> date:
         """Get due date."""
-        return cast(date, self.raw_data["dueDate"])
+        return cast("date", self.raw_data["dueDate"])
 
     @property
     def total(self) -> float:
         """Get total amount."""
-        return cast(float, self.raw_data["total"])
+        return cast("float", self.raw_data["total"])
