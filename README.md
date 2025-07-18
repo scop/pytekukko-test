@@ -4,7 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/pytekukko.svg)](https://badge.fury.io/py/pytekukko)
 [![CI status](https://github.com/scop/pytekukko/workflows/check/badge.svg)](https://github.com/scop/pytekukko/actions?query=workflow%3Acheck)
 
-Simple asyncio client for the [Jätekukko](https://www.jatekukko.fi)
+Simple Python asyncio client for the [Jätekukko](https://www.jatekukko.fi)
 [Omakukko](https://tilasto.jatekukko.fi/indexservice2.jsp) API.
 
 The API of this package is modeled closely after the Omakukko
