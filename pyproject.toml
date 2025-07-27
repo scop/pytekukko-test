@@ -3,7 +3,7 @@ requires = ["setuptools >=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pytekukko"
+name  =  "pytekukko"
 version = "0.16.0"
 description = "Jätekukko Omakukko API client"
 readme = "README.md"
