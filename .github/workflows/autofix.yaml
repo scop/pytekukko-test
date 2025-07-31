@@ -27,4 +27,4 @@ jobs:
       - run: lefthook run pre-commit --all-files --force --no-tty
       - uses: autofix-ci/action@635ffb0c9798bd160680f18fd73371e355b85f27 # v1.3.2
         with:
-          commit-message: chore: autofix.ci automated fixes
+          commit-message: "chore: autofix.ci automated fixes"
