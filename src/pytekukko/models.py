@@ -5,6 +5,7 @@ from datetime import date
 from typing import Any, cast
 
 
+# meh
 @dataclass
 class Service:
     """Service encapsulates information about parts of a customer relationship.
