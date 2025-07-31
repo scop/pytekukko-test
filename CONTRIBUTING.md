@@ -7,7 +7,7 @@
   $ pre-commit install --hook-type pre-commit --hook-type commit-msg
   ```
 
-    Do this before the first commit in your working dir.
+  Do this before the first commit in your working dir.
 
 - Set up a virtualenv of your liking (e.g. pyenv, pyvenv) and activate it,
   install our dev dependencies in it:
