@@ -27,9 +27,7 @@ High level client methods handle logging in when the need to do so is
 detected. If the detection is successful, there is no need to
 separately track session expiration or use the `login` method in the
 first place.
-
-## Command line examples
-
+##   Command line examples
 For usage examples, see utilities in the `pytekukko.examples`
 package. Executables and dependencies for these are installed when the
 package is installed with the `examples` extra, invoke them with
