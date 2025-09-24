@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.2](https://github.com/scop/pytekukko-test/compare/v0.12.1...v0.12.2) (2025-09-24)
+
+
+### Bug Fixes
+
+* build vs publish testing ([c817fcc](https://github.com/scop/pytekukko-test/commit/c817fcc51af3cdc3d0162b4bc4c0cd1dc3c069fc))
+
 ## [0.12.1](https://github.com/scop/pytekukko-test/compare/v0.12.0...v0.12.1) (2025-09-24)
 
 
